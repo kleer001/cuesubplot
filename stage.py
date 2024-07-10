@@ -3,7 +3,7 @@ import gradio as gr
 import time
 from datetime import datetime
 from ollama_utils import query_ollama
-from file_utils import save_results, open_file, generate_filename
+from file_utils import save_results, open_file
 from text_utils import parse_numbered_list
 from constants import MAX_ITEMS
 import settings
@@ -53,10 +53,20 @@ def reset_interface():
     return [gr.update(visible=False, value="")] * (MAX_ITEMS * 3) + [gr.update(value="")]
 
 
-def open_file_wrapper(file):
-    if file is None:
-        return "No file selected", "", "", [gr.update(visible=False, value="")] * (MAX_ITEMS * 3)
-    return open_file(file.name)
+def open_file_wrapper(file_path):
+    results = open_file(file_path)
+    zeroth_cue, first_cue, second_cue = results[:3]
+    item_results = results[3:]
+
+    outputs = [zeroth_cue, first_cue, second_cue]
+    for i in range(0, len(item_results), 3):
+        outputs.extend([
+            gr.update(value=item_results[i], visible=item_results[i + 1]),  # Item text
+            gr.update(visible=item_results[i + 1]),  # Process button
+            gr.update(value=item_results[i + 2], visible=bool(item_results[i + 2]))  # Result text
+        ])
+
+    return outputs
 
 
 
