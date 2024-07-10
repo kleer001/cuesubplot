@@ -64,14 +64,15 @@ def save_results(zeroth_cue, first_cue, second_cue, *components):
         f.write(f"1st Cue: {first_cue}\n")
         f.write(f"2nd Cue: {second_cue}\n\n")
 
-        for i in range(0, len(components), 3):
+        for i in range(0, len(components), 2):
             item = components[i]
-            result = components[i + 2]
-            if item and hasattr(item, 'value') and item.value:
-                f.write(f"Item: {item.value}\n")
-                if result and hasattr(result, 'value') and result.value:
+            result = components[i + 1] if i + 1 < len(components) else None
+
+            if item:  # If item has a value, save it
+                f.write(f"Item: {item}\n")
+                if result:  # If result has a value, save it
                     f.write("******\n")
-                    f.write(f"Result: {result.value}\n")
+                    f.write(f"Result: {result}\n")
                 f.write("\n")
 
     return f"Results saved to {filename}"
@@ -158,7 +159,7 @@ with gr.Blocks() as demo:
 
     save_btn.click(
         save_results,
-        inputs=[zeroth_cue, first_cue, second_cue] + item_components,
+        inputs=[zeroth_cue, first_cue, second_cue] + [comp for comp in item_components if isinstance(comp, gr.Textbox)],
         outputs=save_output
     )
 

@@ -1,0 +1,4 @@
+0th Cue: act as a lazy person with a lisp
+1st Cue: please list 5 types of food
+2nd Cue: please tell me how much you like the following food and why
+
