@@ -1,7 +1,9 @@
+import os
 import gradio as gr
 import time
+from datetime import datetime
 from ollama_utils import query_ollama
-from file_utils import save_results, open_file
+from file_utils import save_results, open_file, generate_filename
 from text_utils import parse_numbered_list
 from constants import MAX_ITEMS
 import settings
@@ -51,7 +53,19 @@ def reset_interface():
     return [gr.update(visible=False, value="")] * (MAX_ITEMS * 3) + [gr.update(value="")]
 
 
-with gr.Blocks() as demo:
+def open_file_wrapper(file):
+    if file is None:
+        return "No file selected", "", "", [gr.update(visible=False, value="")] * (MAX_ITEMS * 3)
+    return open_file(file.name)
+
+
+
+def save_results_wrapper(zeroth_cue, first_cue, second_cue, *components):
+    full_path = save_results(zeroth_cue, first_cue, second_cue, *components)
+    return full_path
+
+
+with gr.Blocks(title="cuesubplot") as demo:
     with gr.Tab("stage"):
         zeroth_cue = gr.Textbox(label="0th cue")
         first_cue = gr.Textbox(label="1st cue")
@@ -68,16 +82,15 @@ with gr.Blocks() as demo:
                 result_text = gr.Textbox(visible=False, label=f"Result {i + 1}")
                 item_components.extend([item_text, process_btn, result_text])
 
+        # Replace the save button and text input with File components
         save_btn = gr.Button("Save Results")
-        save_output = gr.Textbox(label="Save Status")
+        save_output = gr.File(label="Saved File")
 
-        open_input = gr.Textbox(label="File Path to Open")
+        # Replace the open text input with a File component
+        open_input = gr.File(label="File to Open")
         open_btn = gr.Button("Open File")
 
         submit_btn.click(
-            reset_interface,
-            outputs=item_components + [status_message]
-        ).then(
             process_first_prompt,
             inputs=[zeroth_cue, first_cue, second_cue],
             outputs=item_components + [status_message],
@@ -92,14 +105,13 @@ with gr.Blocks() as demo:
             )
 
         save_btn.click(
-            save_results,
-            inputs=[zeroth_cue, first_cue, second_cue] + [comp for comp in item_components if
-                                                          isinstance(comp, gr.Textbox)],
+            save_results_wrapper,
+            inputs=[zeroth_cue, first_cue, second_cue] + [comp for comp in item_components if isinstance(comp, gr.Textbox)],
             outputs=save_output
         )
 
         open_btn.click(
-            open_file,
+            open_file_wrapper,
             inputs=[open_input],
             outputs=[zeroth_cue, first_cue, second_cue] + item_components
         )

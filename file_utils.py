@@ -3,10 +3,17 @@ from datetime import datetime
 from constants import MAX_ITEMS
 import gradio as gr
 
-def save_results(zeroth_cue, first_cue, second_cue, *components):
+def generate_filename(first_cue):
     words = first_cue.split()[:4]
     base_filename = ''.join(word.capitalize() for word in words)
     date_str = datetime.now().strftime("%Y%m%d")
+    return f"{base_filename}{date_str}.txt"
+
+
+def save_results(zeroth_cue, first_cue, second_cue, *components):
+    words = first_cue.split()[:4]
+    base_filename = ''.join(word.capitalize() for word in words)
+    date_str = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"{base_filename}{date_str}.txt"
 
     counter = 1
@@ -14,7 +21,9 @@ def save_results(zeroth_cue, first_cue, second_cue, *components):
         filename = f"{base_filename}{date_str}_{counter}.txt"
         counter += 1
 
-    with open(filename, 'w') as f:
+    full_path = os.path.abspath(filename)
+
+    with open(full_path, 'w', encoding='utf-8') as f:
         f.write(f"0th Cue: {zeroth_cue}\n")
         f.write(f"1st Cue: {first_cue}\n")
         f.write(f"2nd Cue: {second_cue}\n\n")
@@ -30,8 +39,7 @@ def save_results(zeroth_cue, first_cue, second_cue, *components):
                     f.write(f"Result: {result}\n")
                 f.write("\n")
 
-    return f"Results saved to {filename}"
-
+    return full_path
 
 def open_file(file_path):
     if not os.path.exists(file_path):
