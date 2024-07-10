@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="first pass just tests">
-      <change afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dynamicPrompts_01.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/dynamicPrompts_01.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dynamicPrompts_02.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/dynamicPrompts_02.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dynamicPrompts_03.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/dynamicPrompts_03.py" afterDir="false" />
-    </list>
+    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="first pass just tests" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,6 +14,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "kleer001"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/kleer001/cuesubplot",
+    "accountId": "612bf28e-283b-401b-98b6-6048338b1ca1"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/dynamicPrompts_01.py" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -46,7 +51,7 @@
     "Python.dynamicPrompts_03.executor": "Run",
     "Python.stage.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Cherry-picking in master",
     "last_opened_file_path": "/home/menser/Dropbox/ai/code/cuesubplot",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
