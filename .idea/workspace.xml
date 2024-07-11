@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="cleaned up file save">
+    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="squashed save bug and creative file name (probably too expensive)">
+      <change afterPath="$PROJECT_DIR$/word_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/file_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/file_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ollama_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/ollama_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stage.py" beforeDir="false" afterPath="$PROJECT_DIR$/stage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,18 +27,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "kleer001"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;kleer001&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/kleer001/cuesubplot",
-    "accountId": "612bf28e-283b-401b-98b6-6048338b1ca1"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/kleer001/cuesubplot&quot;,
+    &quot;accountId&quot;: &quot;612bf28e-283b-401b-98b6-6048338b1ca1&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/dynamicPrompts_01.py" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -57,20 +56,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.dynamicPrompts_01.executor": "Run",
-    "Python.dynamicPrompts_02.executor": "Run",
-    "Python.dynamicPrompts_03.executor": "Run",
-    "Python.file_utils.executor": "Run",
-    "Python.stage.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/menser/Dropbox/ai/code/cuesubplot",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.dynamicPrompts_01.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dynamicPrompts_02.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dynamicPrompts_03.executor&quot;: &quot;Run&quot;,
+    &quot;Python.file_utils.executor&quot;: &quot;Run&quot;,
+    &quot;Python.stage.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/menser/Dropbox/ai/code/cuesubplot&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
@@ -125,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720647563366</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="squashed save bug and creative file name (probably too expensive)">
+      <option name="closed" value="true" />
+      <created>1720651370502</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1720651370502</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -144,7 +151,8 @@
     <MESSAGE value="even more options and settings and save and open is broken" />
     <MESSAGE value="figuring out github hope i didn't break anything" />
     <MESSAGE value="cleaned up file save" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaned up file save" />
+    <MESSAGE value="squashed save bug and creative file name (probably too expensive)" />
+    <option name="LAST_COMMIT_MESSAGE" value="squashed save bug and creative file name (probably too expensive)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

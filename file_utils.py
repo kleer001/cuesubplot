@@ -3,21 +3,21 @@ from datetime import datetime
 from constants import MAX_ITEMS
 from ollama_utils import extract_key_words
 import gradio as gr
-
+from word_utils import extract_key_words
 
 def generate_filename(zeroth_cue, first_cue):
     key_words = extract_key_words(zeroth_cue)
 
     # If we don't have enough key words, fall back to using words from the first cue
     if len(key_words) < 4:
-        first_cue_words = first_cue.split()[:4 - len(key_words)]
+        first_cue_words = extract_key_words(first_cue, num_words=4 - len(key_words))
         key_words.extend(first_cue_words)
 
-    # Remove any characters that are not allowed in filenames
-    safe_words = [''.join(c for c in word if c.isalnum()) for word in key_words]
-    base_filename = ''.join(word.capitalize() for word in safe_words[:4])
+    base_filename = ''.join(word.capitalize() for word in key_words[:4])
     date_str = datetime.now().strftime("%Y%m%d_%H%M%S")
     return f"{base_filename}{date_str}.txt"
+
+
 def save_results(zeroth_cue, first_cue, second_cue, *components):
     # Create the 'saved_cues' directory if it doesn't exist
     save_dir = os.path.join(os.getcwd(), 'saved_cues')
