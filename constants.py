@@ -1,1 +1,3 @@
-MAX_ITEMS = 5
+from settings import MAX_ITEMS
+
+test = MAX_ITEMS

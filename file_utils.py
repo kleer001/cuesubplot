@@ -2,8 +2,8 @@ import os
 from datetime import datetime
 from constants import MAX_ITEMS
 from ollama_utils import extract_key_words
-import gradio as gr
 from word_utils import extract_key_words
+import gradio as gr
 
 def generate_filename(zeroth_cue, first_cue):
     key_words = extract_key_words(zeroth_cue)
@@ -52,22 +52,20 @@ def save_results(zeroth_cue, first_cue, second_cue, *components):
 
 
 
+
 def open_file(file_path):
-    # Check if the file_path is just a filename or a full path
-    if not os.path.dirname(file_path):
-        # If it's just a filename, assume it's in the 'saved_cues' directory
-        file_path = os.path.join(os.getcwd(), 'saved_cues', file_path)
-
     if not os.path.exists(file_path):
-        return "File not found", "", "", *[("", False, "") for _ in range(MAX_ITEMS)]
+        return "", "", "", []  # Return an empty list for items instead of a fixed-size list
 
-    with open(file_path, 'r', encoding='utf-8') as f:
-        content = f.read()
+    with open(file_path, 'r') as f:
+        lines = f.readlines()
 
-    lines = content.split('\n')
-    zeroth_cue = lines[0].split(': ', 1)[1] if lines[0].startswith('0th Cue:') else ""
-    first_cue = lines[1].split(': ', 1)[1] if lines[1].startswith('1st Cue:') else ""
-    second_cue = lines[2].split(': ', 1)[1] if lines[2].startswith('2nd Cue:') else ""
+    if len(lines) < 3:
+        return "", "", "", []
+
+    zeroth_cue = lines[0].strip().split(': ', 1)[1] if lines[0].startswith("0th Cue: ") else ""
+    first_cue = lines[1].strip().split(': ', 1)[1] if lines[1].startswith("1st Cue: ") else ""
+    second_cue = lines[2].strip().split(': ', 1)[1] if lines[2].startswith("2nd Cue: ") else ""
 
     items_and_results = []
     current_item = ""
@@ -79,14 +77,14 @@ def open_file(file_path):
             if current_item:
                 items_and_results.append((current_item, True, current_result.strip()))
                 current_result = ""
-            current_item = line.split(': ', 1)[1]
+            current_item = line.split(': ', 1)[1].strip()
             reading_result = False
         elif line.startswith("******"):
             reading_result = True
         elif reading_result:
             if line.startswith("Result:"):
-                continue  # Skip the "Result:" line
-            current_result += line + "\n"
+                continue
+            current_result += line
 
     if current_item:
         items_and_results.append((current_item, True, current_result.strip()))
@@ -99,4 +97,77 @@ def open_file(file_path):
 
     return zeroth_cue, first_cue, second_cue, *flattened_outputs
 
+
+def create_library_ui():
+    with gr.Tab("Library"):
+        gr.Markdown("# File Management")
+
+        with gr.Row():
+            with gr.Column():
+                save_btn = gr.Button("Save Results")
+                save_output = gr.File(label="Saved File")
+
+            with gr.Column():
+                open_input = gr.File(label="File to Open")
+                open_btn = gr.Button("Open File", interactive=False)
+
+        library_status_message = gr.Textbox(label="Library Status", interactive=False)
+
+        # Enable the Open File button only when a file is selected
+        open_input.change(
+            lambda x: gr.update(interactive=x is not None),
+            inputs=[open_input],
+            outputs=[open_btn]
+        )
+
+    return save_btn, save_output, open_input, open_btn, library_status_message
+
+
+def save_results_wrapper(zeroth_cue, first_cue, second_cue, *components):
+    full_path = save_results(zeroth_cue, first_cue, second_cue, *components)
+    return gr.File.update(value=full_path, visible=True), f"File saved as {os.path.basename(full_path)}"
+
+
+# In file_utils.py
+
+def open_file_wrapper(file_obj):
+    total_outputs = 3 + MAX_ITEMS * 3 + 1  # 3 cues + (MAX_ITEMS * 3 components per item) + 1 status message
+
+    if file_obj is None:
+        return [gr.update()] * (total_outputs - 1) + [
+            gr.update(value="Please select a file before clicking 'Open File'")]
+
+    file_path = file_obj.name
+    results = open_file(file_path)
+    zeroth_cue, first_cue, second_cue = results[:3]
+    item_results = results[3:]
+
+    outputs = [
+        gr.update(value=zeroth_cue),
+        gr.update(value=first_cue),
+        gr.update(value=second_cue)
+    ]
+
+    for i in range(MAX_ITEMS):
+        if i * 3 + 2 < len(item_results):
+            item_text = item_results[i * 3]
+            result_text = item_results[i * 3 + 2]
+
+            outputs.extend([
+                gr.update(value=item_text, visible=True),
+                gr.update(visible=True),
+                gr.update(value=result_text, visible=bool(result_text))
+            ])
+        else:
+            outputs.extend([
+                gr.update(value="", visible=False),
+                gr.update(visible=False),
+                gr.update(value="", visible=False)
+            ])
+
+    outputs.append(gr.update(value=f"File opened: {os.path.basename(file_path)}"))
+
+    assert len(outputs) == total_outputs, f"Expected {total_outputs} outputs, but got {len(outputs)}"
+
+    return outputs
 

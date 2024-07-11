@@ -1,12 +1,9 @@
-import os
 import string
-
 
 def load_stop_words():
     file_path = 'stop_words.data'
     with open(file_path, 'r') as f:
         return set(line.strip() for line in f)
-
 
 def extract_key_words(text, num_words=4):
     stop_words = load_stop_words()
