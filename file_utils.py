@@ -1,9 +1,16 @@
 import os
 from datetime import datetime
-from constants import MAX_ITEMS
 from ollama_utils import extract_key_words
 from word_utils import extract_key_words
 import gradio as gr
+import configparser
+
+#The only setting we need on creation
+config = configparser.ConfigParser()
+config.read('settings.cfg')
+maxvalue = config['DEFAULT']['max_items']
+MAX_ITEMS = int(maxvalue)
+
 
 def generate_filename(zeroth_cue, first_cue):
     key_words = extract_key_words(zeroth_cue)

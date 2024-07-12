@@ -1,9 +1,15 @@
 import re
+import configparser
 
+#The only setting we need on creation
+config = configparser.ConfigParser()
+config.read('settings.cfg')
+maxvalue = config['DEFAULT']['max_items']
+MAXITEMS = int(maxvalue)
 
-def parse_numbered_list(text, MAX_ITEMS=10):
-    # Find the index of the first numbered item
-    first_number_match = re.search(r'\n\d+\.?\s', text)
+def parse_numbered_list(text, MAX_ITEMS=MAXITEMS):
+    # Find the index of the first numbered item anywhere in the text
+    first_number_match = re.search(r'\d+\.?\s', text)
 
     if first_number_match:
         # If a numbered list is found, start from that index
@@ -15,7 +21,9 @@ def parse_numbered_list(text, MAX_ITEMS=10):
         matches = re.findall(pattern, numbered_text, re.DOTALL)
 
         if matches:
-            return [match[1].strip() for match in matches][:MAX_ITEMS]
+            items = [match[1].strip() for match in matches]
+            items = [item for item in items if item]  # Remove empty items
+            return items[:MAX_ITEMS]
 
     # If no numbered list is found or parsing fails, fall back to previous methods
 
@@ -27,4 +35,4 @@ def parse_numbered_list(text, MAX_ITEMS=10):
         return non_empty_lines[:MAX_ITEMS]
 
     # Method 3: If no newlines or only one line, return the whole text as a single item
-    return [text.strip()][:MAX_ITEMS]
+    return [text.strip()][:MAX_ITEMS] if text.strip() else []

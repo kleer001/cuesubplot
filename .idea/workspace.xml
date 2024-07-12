@@ -4,18 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="lovely save name and stop word data file from countwordsfree dat com slash stopwords">
-      <change afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/count_lines.sh" afterDir="false" />
+    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="aesthetic and settings and a little text parsing">
+      <change afterPath="$PROJECT_DIR$/findLLM.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/llm_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/file_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/file_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ollama_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/ollama_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/settings.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stage.py" beforeDir="false" afterPath="$PROJECT_DIR$/stage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/text_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/word_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/word_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +71,7 @@
     "Python.dynamicPrompts_02.executor": "Run",
     "Python.dynamicPrompts_03.executor": "Run",
     "Python.file_utils.executor": "Run",
+    "Python.llm_models.executor": "Run",
     "Python.stage.executor": "Run",
     "Python.text_utils.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -149,8 +150,19 @@
       <option name="project" value="LOCAL" />
       <updated>1720715730880</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="aesthetic and settings and a little text parsing">
+      <option name="closed" value="true" />
+      <created>1720734156265</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1720734156265</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.cfg" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -172,6 +184,7 @@
     <MESSAGE value="lovely save name and stop word data file from https://countwordsfree.com/stopwords" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
     <MESSAGE value="lovely save name and stop word data file from countwordsfree dat com slash stopwords" />
-    <option name="LAST_COMMIT_MESSAGE" value="lovely save name and stop word data file from countwordsfree dat com slash stopwords" />
+    <MESSAGE value="aesthetic and settings and a little text parsing" />
+    <option name="LAST_COMMIT_MESSAGE" value="aesthetic and settings and a little text parsing" />
   </component>
 </project>

@@ -1,4 +1,21 @@
-### To Do
+### To Do & Done
+
+# Meta 
+[] Integrate 6 other APIs, install and test  
+
+[] Ollama
+
+[] LM Studio
+
+[] GPT4All
+
+[] LocalAI
+
+[] llama.cpp
+
+[] oobabooga/text-generation-webui
+
+# Code
 
 [] Fix text edge case where list starts with somthing other than a number like: 
 
@@ -7,6 +24,7 @@ I like food, and here are some good ones
 1. potatoes they're great
 
 2. love french fries too!
+# Marketing
 
 [] Post to sub reddits when polished:
 

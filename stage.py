@@ -1,8 +1,14 @@
 import gradio as gr
 from file_utils import open_file_wrapper, save_results_wrapper
 from ollama_utils import query_ollama
-from settings import MAX_ITEMS, create_settings_interface
+from settings import  create_settings_interface
+import configparser
 
+#The only setting we need on creation
+config = configparser.ConfigParser()
+config.read('settings.cfg')
+maxvalue = config['DEFAULT']['max_items']
+MAX_ITEMS = int(maxvalue)
 
 def process_item(zeroth_cue, item_text, second_prompt, item_index):
     full_prompt = f"{zeroth_cue} {second_prompt} {item_text}"
