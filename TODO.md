@@ -8,6 +8,8 @@
 [] LM Studio, installed, running and DL models
 ( run appimage with the --no-sandbox-option)
 
+run: ~/Downloads/LM_Studio-0.2.27.AppImage --no-sandbox
+
 [] GPT4All, dled, installed, and...
 
 [] LocalAI, kill
