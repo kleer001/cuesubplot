@@ -1,8 +1,9 @@
 import gradio as gr
 from file_utils import open_file_wrapper, save_results_wrapper
-from ollama_utils import query_ollama
+from llm_utils import *
 from settings import  create_settings_interface
 import configparser
+
 
 #The only setting we need on creation
 config = configparser.ConfigParser()
@@ -12,7 +13,7 @@ MAX_ITEMS = int(maxvalue)
 
 def process_item(zeroth_cue, item_text, second_prompt, item_index):
     full_prompt = f"{zeroth_cue} {second_prompt} {item_text}"
-    response = query_ollama(full_prompt)
+    response = get_llm_response(full_prompt)
     return gr.update(visible=True, value=response)
 
 
@@ -51,7 +52,7 @@ with gr.Blocks(title="cuesubplot") as demo:
 
 
         def process_first_prompt(zeroth, first, second):
-            items = query_ollama(f"{zeroth} {first}")
+            items = get_llm_response(f"{zeroth} {first}")
             item_list = items.split('\n')
             outputs = []
             for i, item_text in enumerate(item_list[:MAX_ITEMS]):
