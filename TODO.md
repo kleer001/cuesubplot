@@ -3,16 +3,16 @@
 # Meta 
 [] Integrate 6 other APIs, install and test  
 
-[] Ollama , stop with: systemctl stop ollama.service
+[X] Ollama , stop with: systemctl stop ollama.service
 
-[] LM Studio, installed, running and DL models
+[X] LM Studio, installed, running and DL models, working
 ( run appimage with the --no-sandbox-option)
 
 run: ~/Downloads/LM_Studio-0.2.27.AppImage --no-sandbox
 
-[] GPT4All, dled, installed, and...
+[X] GPT4All, dled, installed, and... works
 
-[] LocalAI, kill
+[X] LocalAI, dled, installed, running, fixing, works
 
 [] llama.cpp
 

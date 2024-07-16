@@ -4,11 +4,11 @@ import configparser
 
 config = configparser.ConfigParser()
 config.read('settings.cfg')
-model_value = config['DEFAULT']['current_model']
+model_value = config['DEFAULT']['model']
 current_model = str(model_value)
 
 def query_ollama(prompt):
-    response = ollama.generate(model=current_model, prompt=prompt)
+    response = ollama.generate(model=model, prompt=prompt)
     return response['response']
 
 

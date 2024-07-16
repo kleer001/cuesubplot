@@ -7,47 +7,77 @@ config.read('settings.cfg')
 maxvalue = config['DEFAULT']['max_items']
 MAXITEMS = int(maxvalue)
 
+import re
 
-NUMBER_WORDS = {
-    "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
-    "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
-    "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14, "fifteen": 15,
-    "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19, "twenty": 20,
-    "first": 1, "second": 2, "third": 3, "fourth": 4, "fifth": 5,
-    "sixth": 6, "seventh": 7, "eighth": 8, "ninth": 9, "tenth": 10,
-    "eleventh": 11, "twelfth": 12, "thirteenth": 13, "fourteenth": 14, "fifteenth": 15,
-    "sixteenth": 16, "seventeenth": 17, "eighteenth": 18, "nineteenth": 19, "twentieth": 20
-}
 
-def parse_numbered_list(text, MAX_ITEMS=MAXITEMS):
-    # Find the index of the first numbered item anywhere in the text
-    first_number_match = re.search(r'\b(?:\d+\.?\s*|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|eleventh|twelfth|thirteenth|fourteenth|fifteenth|sixteenth|seventeenth|eighteenth|nineteenth|twentieth)\b', text, re.IGNORECASE)
+def generate_number_words():
+    units = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+    teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen",
+             "nineteen"]
+    tens = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
+    scales = ["hundred", "thousand"]
+
+    ordinal_units = ["", "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth"]
+    ordinal_teens = ["tenth", "eleventh", "twelfth", "thirteenth", "fourteenth", "fifteenth", "sixteenth",
+                     "seventeenth", "eighteenth", "nineteenth"]
+    ordinal_tens = ["twentieth", "thirtieth", "fortieth", "fiftieth", "sixtieth", "seventieth", "eightieth",
+                    "ninetieth"]
+
+    number_words = {}
+
+    # Add cardinal numbers
+    for i, word in enumerate(units[1:] + teens):
+        number_words[word] = i + 1
+
+    for i, ten in enumerate(tens):
+        number_words[ten] = (i + 2) * 10
+
+    # Add ordinal numbers
+    for i, word in enumerate(ordinal_units[1:] + ordinal_teens):
+        number_words[word] = i + 1
+
+    for i, ten in enumerate(ordinal_tens):
+        number_words[ten] = (i + 2) * 10
+
+    # Add compounds (twenty-one to ninety-nine, and twenty-first to ninety-ninth)
+    for i, ten in enumerate(tens):
+        for j, unit in enumerate(units[1:]):
+            cardinal = f"{ten}-{unit}"
+            ordinal = f"{ten}-{ordinal_units[j + 1]}"
+            number_words[cardinal] = (i + 2) * 10 + (j + 1)
+            number_words[ordinal] = (i + 2) * 10 + (j + 1)
+
+    # Add scales
+    for i, scale in enumerate(scales):
+        number_words[scale] = 10 ** ((i + 1) * 2)
+        number_words[f"{scale}th"] = 10 ** ((i + 1) * 2)
+
+    return number_words
+
+
+NUMBER_WORDS = generate_number_words()
+
+def parse_numbered_list(text, MAX_ITEMS=20):
+    number_words = '|'.join(NUMBER_WORDS.keys())
+    number_pattern = rf'\b(?:\d+\.?\s*|{number_words})\b'
+
+    first_number_match = re.search(number_pattern, text, re.IGNORECASE)
 
     if first_number_match:
-        # If a numbered list is found, start from that index
         start_index = first_number_match.start()
-        numbered_text = text[start_index:].strip()
+        numbered_text = text[start_index:]
 
-        # Method 1: Match numbered items (1. Item, 2. Item, etc. or one. Item, two. Item, etc. or first. Item, second. Item, etc.)
-        pattern = r'(?:.*?\n\n)?\b(?:\d+\.?\s*|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|eleventh|twelfth|thirteenth|fourteenth|fifteenth|sixteenth|seventeenth|eighteenth|nineteenth|twentieth)\b\s*(.*?)(?=\n\b(?:\d+\.?\s*|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|eleventh|twelfth|thirteenth|fourteenth|fifteenth|sixteenth|seventeenth|eighteenth|nineteenth|twentieth)\b\s*|\Z)'
+        pattern = rf'(?:.*?\n\n)?{number_pattern}\s*(.*?)(?=\n{number_pattern}|\Z)'
         matches = re.findall(pattern, numbered_text, re.DOTALL | re.IGNORECASE)
 
-        if matches:
-            items = []
-            for match in matches:
-                item_text = match.strip()
-                if item_text:
-                    items.append(item_text)
-            return items[:MAX_ITEMS]
+        items = [match.strip() for match in matches if match.strip()]
+        return items[:MAX_ITEMS]
 
-    # If no numbered list is found or parsing fails, fall back to previous methods
+    # Fallback methods
+    lines = [line.strip() for line in text.split('\n') if line.strip()]
 
-    # Method 2: Try splitting by newlines
-    lines = text.split('\n')
-    non_empty_lines = [line.strip() for line in lines if line.strip()]
+    if len(lines) > 1:
+        return lines[:MAX_ITEMS]
 
-    if len(non_empty_lines) > 1:
-        return non_empty_lines[:MAX_ITEMS]
-
-    # Method 3: If no newlines or only one line, return the whole text as a single item
     return [text.strip()][:MAX_ITEMS] if text.strip() else []
+

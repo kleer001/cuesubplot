@@ -4,17 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="added prospective cases dealing with 5 other local LLMs and their defaults">
-      <change afterPath="$PROJECT_DIR$/llm_utils.py" afterDir="false" />
+    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="text parsing list still not fixed, this is frustrating">
+      <change afterPath="$PROJECT_DIR$/adaptive_llm_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/findLLM.py" beforeDir="false" afterPath="$PROJECT_DIR$/findLLM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/llm_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/llm_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ollama_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/ollama_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/settings.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stage.py" beforeDir="false" afterPath="$PROJECT_DIR$/stage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/text_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
   </component>
   <component name="Git.Merge.Settings">
     <option name="BRANCH" value="origin/master" />
@@ -58,22 +68,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.dynamicPrompts_01.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dynamicPrompts_02.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dynamicPrompts_03.executor&quot;: &quot;Run&quot;,
-    &quot;Python.file_utils.executor&quot;: &quot;Run&quot;,
-    &quot;Python.llm_models.executor&quot;: &quot;Run&quot;,
-    &quot;Python.stage.executor&quot;: &quot;Run&quot;,
-    &quot;Python.text_utils.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/menser/Dropbox/ai/code/cuesubplot&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.dynamicPrompts_01.executor": "Run",
+    "Python.dynamicPrompts_02.executor": "Run",
+    "Python.dynamicPrompts_03.executor": "Run",
+    "Python.file_utils.executor": "Run",
+    "Python.llm_models.executor": "Run",
+    "Python.stage.executor": "Run",
+    "Python.text_utils.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/menser/Dropbox/ai/code/cuesubplot",
+    "settings.editor.selected.configurable": "preferences.intentionPowerPack"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
@@ -160,7 +170,31 @@
       <option name="project" value="LOCAL" />
       <updated>1720825368148</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Now works with LM studio, only 4 to go! And ollama needs a server_shutdown command.  parse_numbered_list still needs help.">
+      <option name="closed" value="true" />
+      <created>1721070547851</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1721070547851</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Now works with LM studio, only 4 to go! And ollama needs a server_shutdown command.  parse_numbered_list still needs help.">
+      <option name="closed" value="true" />
+      <created>1721077709055</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1721077709056</updated>
+    </task>
+    <task id="LOCAL-00011" summary="text parsing list still not fixed, this is frustrating">
+      <option name="closed" value="true" />
+      <created>1721079676364</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1721079676364</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -188,6 +222,8 @@
     <MESSAGE value="lovely save name and stop word data file from countwordsfree dat com slash stopwords" />
     <MESSAGE value="aesthetic and settings and a little text parsing" />
     <MESSAGE value="added prospective cases dealing with 5 other local LLMs and their defaults" />
-    <option name="LAST_COMMIT_MESSAGE" value="added prospective cases dealing with 5 other local LLMs and their defaults" />
+    <MESSAGE value="Now works with LM studio, only 4 to go! And ollama needs a server_shutdown command.  parse_numbered_list still needs help." />
+    <MESSAGE value="text parsing list still not fixed, this is frustrating" />
+    <option name="LAST_COMMIT_MESSAGE" value="text parsing list still not fixed, this is frustrating" />
   </component>
 </project>

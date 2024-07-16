@@ -23,7 +23,7 @@ def load_settings():
         # Create a default settings file if it doesn't exist
         config["DEFAULT"] = {
             "active_llm": active_llm or "Unknown",
-            "current_model": "",
+            "model": "",
             "messy": "False",
             "max_items": "5"
         }
@@ -41,7 +41,6 @@ def load_settings():
     settings["messy"] = settings.get("messy", "False").lower() == "true"
     settings["max_items"] = int(settings.get("max_items", "5"))
 
-
 def save_settings():
     config = configparser.ConfigParser()
     config.read("settings.cfg")
@@ -51,7 +50,7 @@ def save_settings():
         config["DEFAULT"] = {}
     config["DEFAULT"].update({
         "active_llm": active_llm,
-        "current_model": settings.get("current_model", ""),
+        "model": settings.get("model", ""),
         "messy": str(settings.get("messy", False)),
         "max_items": str(settings.get("max_items", 5))
     })
@@ -61,12 +60,20 @@ def save_settings():
         if active_llm not in config:
             config[active_llm] = {}
         for key, value in settings.items():
-            if key not in ["active_llm", "current_model", "messy", "max_items"]:
+            if key not in ["active_llm", "model", "messy", "max_items"]:
                 config[active_llm][key] = str(value)
+        # Also update the common settings in the specific LLM section
+        config[active_llm].update({
+            "model": settings.get("model", ""),
+            "messy": str(settings.get("messy", False)),
+            "max_items": str(settings.get("max_items", 5)),
+            "max_tokens": str(settings.get("max_tokens", 100)),
+            "temperature": str(settings.get("temperature", 0.7)),
+            "stream": str(settings.get("stream", False))
+        })
 
     with open("settings.cfg", "w") as configfile:
         config.write(configfile)
-
 
 def create_settings_interface():
     gr.Markdown(f"## Settings for {active_llm}")
@@ -74,12 +81,11 @@ def create_settings_interface():
     input_components = []
 
     # General settings
-    input_components.append(gr.Dropdown(choices=get_models(active_llm), value=settings.get("current_model", ""), label="Model"))
+    input_components.append(gr.Dropdown(choices=get_models(active_llm), value=settings.get("model", ""), label="Model"))
     input_components.append(gr.Checkbox(value=settings.get("messy", False), label="Messy"))
     input_components.append(gr.Number(value=settings.get("max_items", 5), label="Maximum number of items", precision=0))
 
-    # Ollama-specific settings
-    input_components.append(gr.Textbox(value=settings.get("model", ""), label="Ollama Model"))
+    # LLM-specific settings
     input_components.append(gr.Number(value=settings.get("max_tokens", 100), label="Max Tokens"))
     input_components.append(gr.Slider(minimum=0, maximum=1, value=settings.get("temperature", 0.7), label="Temperature"))
     input_components.append(gr.Checkbox(value=settings.get("stream", False), label="Stream"))
@@ -88,12 +94,11 @@ def create_settings_interface():
     **Note:** Changes to MAX_ITEMS will require a browser refresh to take effect on the UI layout.
     """)
 
-    def update_settings(current_model, messy, max_items, ollama_model, max_tokens, temperature, stream):
+    def update_settings(model, messy, max_items, max_tokens, temperature, stream):
         settings.update({
-            "current_model": current_model,
+            "model": model,
             "messy": messy,
             "max_items": int(max_items),
-            "model": ollama_model,
             "max_tokens": int(max_tokens),
             "temperature": float(temperature),
             "stream": stream
