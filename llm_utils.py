@@ -1,6 +1,7 @@
 import configparser
 import requests
 from findLLM import find_local_LLM
+from text_utils import parse_list
 
 def load_config():
     config = configparser.ConfigParser()
@@ -29,13 +30,20 @@ def query_llm(prompt, active_llm, config=None):
             "temperature": float(settings.get('temperature', 0.7)),
             "max_tokens": int(settings.get('max_tokens', 100)),
         }
-    elif active_llm == 'oobabooga':
+    if active_llm == 'oobabooga':
         payload = {
-            "model": settings.get('model', ''),
-            "prompt": prompt,
-            "max_new_tokens": int(settings.get('max_tokens', 100)),
+            "messages": [
+                {"role": "user", "content": prompt}
+            ],
+            "max_tokens": int(settings.get('max_tokens', 100)),
             "temperature": float(settings.get('temperature', 0.7)),
+            "top_p": float(settings.get('top_p', 0.95)),
+            "top_k": int(settings.get('top_k', 40)),
+            "repetition_penalty": float(settings.get('repetition_penalty', 1.1)),
         }
+        if 'stop' in settings:
+            payload['stop'] = settings.get('stop', '').split(',')
+
     elif active_llm == 'LocalAI':
         payload = {
             "model": settings.get('model', ''),
@@ -68,9 +76,19 @@ def query_llm(prompt, active_llm, config=None):
     if 'stop' in settings and active_llm not in ['LM Studio', 'LocalAI', 'llama.cpp']:
         payload['stop'] = settings.get('stop', '').split(',')
 
+#### test ####
+#    print(f"URL: {url}")
+#    print(f"Headers: {headers}")
+#    print(f"Payload: {payload}")
+#### test ####
+
     try:
         response = requests.post(url, json=payload, headers=headers)
         response.raise_for_status()
+        #### test ####
+ #       print(f"Status Code: {response.status_code}")
+ #       print(f"Response Content: {response.text}")
+        #### test ####
         return response.json()
     except requests.RequestException as e:
         print(f"Error querying {active_llm}: {e}")
@@ -100,7 +118,20 @@ def get_response(response, active_llm):
         # If no matching key is found, return an empty string
         return ''
     elif active_llm == 'oobabooga':
-        return response['results'][0]['text']
+        try:
+            # The response structure might be like OpenAI's
+            return response['choices'][0]['message']['content']
+        except KeyError:
+            # If the above fails, let's print the full response for debugging
+            print(f"Unexpected response structure from oobabooga: {response}")
+            # Attempt to find the generated text in the response
+            if 'text' in response:
+                return response['text'].strip()
+            elif 'generated_text' in response:
+                return response['generated_text'].strip()
+            else:
+                print("Could not find generated text in the response")
+                return None
     else:
         return "Unsupported LLM response format"
 
@@ -112,7 +143,8 @@ def get_llm_response(prompt):
     if active_llm:
         response = query_llm(prompt, active_llm, config)
         if response:
-            return get_response(response, active_llm)
+            cleaned_response = parse_list(response)
+            return get_response(cleaned_response, active_llm)
         else:
             return "Error: Failed to get a response from the LLM"
     else:

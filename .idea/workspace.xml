@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/findOOBA.py" afterDir="false" />
+    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="finally got oobabooga correctly pinged">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/findLLM.py" beforeDir="false" afterPath="$PROJECT_DIR$/findLLM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/llm_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/llm_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ollama_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/ollama_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/settings.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/text_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721167970046</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="finally got oobabooga correctly pinged">
+      <option name="closed" value="true" />
+      <created>1721248950344</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1721248950344</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -226,6 +235,18 @@
     <MESSAGE value="added prospective cases dealing with 5 other local LLMs and their defaults" />
     <MESSAGE value="Now works with LM studio, only 4 to go! And ollama needs a server_shutdown command.  parse_numbered_list still needs help." />
     <MESSAGE value="text parsing list still not fixed, this is frustrating" />
-    <option name="LAST_COMMIT_MESSAGE" value="text parsing list still not fixed, this is frustrating" />
+    <MESSAGE value="finally got oobabooga correctly pinged" />
+    <option name="LAST_COMMIT_MESSAGE" value="finally got oobabooga correctly pinged" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/llm_utils.py</url>
+          <line>79</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

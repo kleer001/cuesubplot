@@ -7,8 +7,6 @@ config.read('settings.cfg')
 maxvalue = config['DEFAULT']['max_items']
 MAXITEMS = int(maxvalue)
 
-import re
-
 
 def generate_number_words():
     units = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
@@ -57,27 +55,41 @@ def generate_number_words():
 
 NUMBER_WORDS = generate_number_words()
 
-def parse_numbered_list(text, MAX_ITEMS=20):
-    number_words = '|'.join(NUMBER_WORDS.keys())
-    number_pattern = rf'\b(?:\d+\.?\s*|{number_words})\b'
 
-    first_number_match = re.search(number_pattern, text, re.IGNORECASE)
+def parse_list(text):
+    if isinstance(text, dict):
+        # If text is a dictionary, try to extract the content
+        text = text.get('content', '') or text.get('text', '')
+    elif not isinstance(text, str):
+        return ""  # Return empty string if text is neither a string nor a dictionary
 
-    if first_number_match:
-        start_index = first_number_match.start()
-        numbered_text = text[start_index:]
+    number_words = generate_number_words()
+    number_word_pattern = '|'.join(sorted(number_words.keys(), key=len, reverse=True))
+    lines = text.split('\n')
 
-        pattern = rf'(?:.*?\n\n)?{number_pattern}\s*(.*?)(?=\n{number_pattern}|\Z)'
-        matches = re.findall(pattern, numbered_text, re.DOTALL | re.IGNORECASE)
+    start_index = next((i for i, line in enumerate(lines)
+                        if re.match(r'^(\d+|{word_pattern})([.:\-_]?\s)'.format(word_pattern=number_word_pattern),
+                                    line.strip(), flags=re.IGNORECASE)),
+                       None)
 
-        items = [match.strip() for match in matches if match.strip()]
-        return items[:MAX_ITEMS]
+    if start_index is None:
+        return ""
 
-    # Fallback methods
-    lines = [line.strip() for line in text.split('\n') if line.strip()]
+    processed_items = []
+    current_item = ""
+    for line in lines[start_index:]:
+        clean_line = re.sub(r'^(\d+|{word_pattern})([.:\-_]?\s)'.format(word_pattern=number_word_pattern), '',
+                            line.strip(), flags=re.IGNORECASE)
 
-    if len(lines) > 1:
-        return lines[:MAX_ITEMS]
+        if re.match(r'^(\d+|{word_pattern})([.:\-_]?\s)'.format(word_pattern=number_word_pattern), line.strip(),
+                    flags=re.IGNORECASE):
+            if current_item:
+                processed_items.append(current_item.strip())
+            current_item = clean_line
+        else:
+            current_item += " " + clean_line
 
-    return [text.strip()][:MAX_ITEMS] if text.strip() else []
+    if current_item:
+        processed_items.append(current_item.strip())
 
+    return "\n".join(processed_items)

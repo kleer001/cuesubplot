@@ -9,6 +9,7 @@ current_model = str(model_value)
 
 def query_ollama(prompt):
     response = ollama.generate(model=model, prompt=prompt)
+    print(prompt)
     return response['response']
 
 
