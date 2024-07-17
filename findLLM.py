@@ -6,7 +6,7 @@ import time
 def check_llm(name, url, headers=None):
     try:
         response = requests.get(url, headers=headers, timeout=2)
-        if response.status_code == 200:
+        if response.status_code in [200, 405, 422]:
             return name
     except requests.RequestException:
         pass
@@ -20,8 +20,7 @@ def find_local_LLM():
         ("GPT4All", "http://localhost:4891/v1/models"),
         ("LocalAI", "http://localhost:8080/v1/models"),
         ("llama.cpp", "http://localhost:8000/v1/models"),
-        #("oobabooga", "http://localhost:5000/api/v1/model")
-        ("oobabooga", "http://127.0.0.1:5000/v1/chat/completions")
+        ("oobabooga", "http://127.0.0.1:5000/v1/completions")
     ]
 
     try:

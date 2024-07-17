@@ -14,9 +14,13 @@ run: ~/Downloads/LM_Studio-0.2.27.AppImage --no-sandbox
 
 [X] LocalAI, dled, installed, running, fixing, works
 
-[] llama.cpp
+kill with: systemctl stop local-ai.service
 
-[] oobabooga/text-generation-webui
+[  ] llama.cpp
+
+[  ] oobabooga/text-generation-webui
+
+[  ] openLLM @ https://github.com/bentoml/OpenLLM
 
 # Code
 
