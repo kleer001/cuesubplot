@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="getting a response from oobabooga, but found out the reason the parse_list wasn't working is that I never used it. Now it's all broken and will need to fix the queering and response parts">
+    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="fixed oobabooga integration, working on UX and Readme.md information for prospective alpha team. Had a problem with running ollama again (typo hahah) Ran into save bug, will fix soon.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/llm_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/llm_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/settings.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/file_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ollama_utils.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/stage.py" beforeDir="false" afterPath="$PROJECT_DIR$/stage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/text_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/word_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/word_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721256876188</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fixed oobabooga integration, working on UX and Readme.md information for prospective alpha team. Had a problem with running ollama again (typo hahah) Ran into save bug, will fix soon.">
+      <option name="closed" value="true" />
+      <created>1721329824367</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1721329824367</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -247,7 +254,8 @@
     <MESSAGE value="text parsing list still not fixed, this is frustrating" />
     <MESSAGE value="finally got oobabooga correctly pinged" />
     <MESSAGE value="getting a response from oobabooga, but found out the reason the parse_list wasn't working is that I never used it. Now it's all broken and will need to fix the queering and response parts" />
-    <option name="LAST_COMMIT_MESSAGE" value="getting a response from oobabooga, but found out the reason the parse_list wasn't working is that I never used it. Now it's all broken and will need to fix the queering and response parts" />
+    <MESSAGE value="fixed oobabooga integration, working on UX and Readme.md information for prospective alpha team. Had a problem with running ollama again (typo hahah) Ran into save bug, will fix soon." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed oobabooga integration, working on UX and Readme.md information for prospective alpha team. Had a problem with running ollama again (typo hahah) Ran into save bug, will fix soon." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

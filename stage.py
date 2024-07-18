@@ -45,9 +45,9 @@ with gr.Blocks(title="cuesubplot") as demo:
         item_components = []
         for i in range(MAX_ITEMS):
             with gr.Row(visible=False) as item_row:
-                process_btn = gr.Button(f"Process Item {i + 1}", visible=False)
-                item = gr.Textbox(label=f"Item {i + 1}", visible=False)
-            result = gr.Textbox(label=f"Result {i + 1}", visible=False)
+                process_btn = gr.Button(f"Riff On List Item {i + 1}", visible=False)
+                item = gr.Textbox(label=f"List Item {i + 1}", visible=False)
+            result = gr.Textbox(label=f"Riffing Result {i + 1}", visible=False)
             item_components.extend([item_row, item, process_btn, result])
 
 
@@ -102,20 +102,23 @@ with gr.Blocks(title="cuesubplot") as demo:
 
         save_btn.click(
             save_results_wrapper,
-            inputs=[zeroth_cue, first_cue, second_cue] + item_components,
+            inputs=[zeroth_cue, first_cue, second_cue] + [comp for comp in item_components if
+                                                          isinstance(comp, gr.Textbox)],
             outputs=[save_output, library_status_message]
         )
 
         open_btn.click(
             open_file_wrapper,
             inputs=[open_input],
-            outputs=[zeroth_cue, first_cue, second_cue] + item_components + [library_status_message]
+            outputs=[zeroth_cue, first_cue, second_cue] + [comp for comp in item_components if
+                                                           isinstance(comp, gr.Textbox)] + [library_status_message]
         )
 
         clear_btn.click(
             clear_stage,
             inputs=[],
-            outputs=[zeroth_cue, first_cue, second_cue] + item_components + [library_status_message]
+            outputs=[zeroth_cue, first_cue, second_cue] + [comp for comp in item_components if
+                                                           isinstance(comp, gr.Textbox)] + [library_status_message]
         )
 
     with gr.Tab("Settings"):

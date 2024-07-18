@@ -5,8 +5,13 @@ Thank you for joining the alpha release. I apologize for the roughness of the pr
 
 Hopefully it will provide some entertainment, if not other value as we explore what LLMs can bring us. 
 
+## HOW-TO Start
 
-## WORK AROUNDS:
+#1 Make sure you have git installed. 
+
+<code> </code>
+
+
 
 ## COMMON PROBLEMS: 
 

@@ -1,6 +1,5 @@
 import os
 from datetime import datetime
-from ollama_utils import extract_key_words
 from word_utils import extract_key_words
 import gradio as gr
 import configparser
@@ -132,7 +131,7 @@ def create_library_ui():
 
 def save_results_wrapper(zeroth_cue, first_cue, second_cue, *components):
     full_path = save_results(zeroth_cue, first_cue, second_cue, *components)
-    return gr.File.update(value=full_path, visible=True), f"File saved as {os.path.basename(full_path)}"
+    return gr.update(value=full_path, visible=True), f"File saved as {os.path.basename(full_path)}"
 
 
 # In file_utils.py

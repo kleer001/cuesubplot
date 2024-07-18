@@ -16,4 +16,4 @@ def extract_key_words(text, num_words=4):
     words = [word for word in text.split() if word not in stop_words]
 
     # Return the first num_words
-    return words[:num_words]
+    return words[-num_words:]
