@@ -57,11 +57,8 @@ NUMBER_WORDS = generate_number_words()
 
 
 def parse_list(text):
-    if isinstance(text, dict):
-        # If text is a dictionary, try to extract the content
-        text = text.get('content', '') or text.get('text', '')
-    elif not isinstance(text, str):
-        return ""  # Return empty string if text is neither a string nor a dictionary
+    if not isinstance(text, str):
+        return ""  # Return empty string if text is not a string
 
     number_words = generate_number_words()
     number_word_pattern = '|'.join(sorted(number_words.keys(), key=len, reverse=True))
@@ -73,7 +70,7 @@ def parse_list(text):
                        None)
 
     if start_index is None:
-        return ""
+        return text  # If no numbered list is found, return the original text
 
     processed_items = []
     current_item = ""

@@ -35,17 +35,17 @@ def clear_stage():
 
 with gr.Blocks(title="cuesubplot") as demo:
     with gr.Tab("Stage"):
-        zeroth_cue = gr.Textbox(label="0th Cue")
-        first_cue = gr.Textbox(label="1st Cue")
-        second_cue = gr.Textbox(label="2nd Cue")
-        submit_btn = gr.Button("Submit")
+        zeroth_cue = gr.Textbox(label="Role (applied to all prompts)")
+        first_cue = gr.Textbox(label="List generation (ask for a numbered list)")
+        second_cue = gr.Textbox(label="Riff on the list (is applied before the list item)")
+        submit_btn = gr.Button("Submit Request for List")
 
         status_message = gr.Textbox(label="Status", interactive=False)
 
         item_components = []
         for i in range(MAX_ITEMS):
             with gr.Row(visible=False) as item_row:
-                process_btn = gr.Button(f"Process {i + 1}", visible=False)
+                process_btn = gr.Button(f"Process Item {i + 1}", visible=False)
                 item = gr.Textbox(label=f"Item {i + 1}", visible=False)
             result = gr.Textbox(label=f"Result {i + 1}", visible=False)
             item_components.extend([item_row, item, process_btn, result])

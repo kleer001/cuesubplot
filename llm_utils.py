@@ -19,6 +19,18 @@ def query_llm(prompt, active_llm, config=None):
     url = f"{settings['url']}{settings['endpoint']}"
 
     headers = {"Content-Type": "application/json"}
+    if active_llm == 'Ollama':
+        payload = {
+            "model": settings.get('model', 'llama3'),
+            "prompt": prompt,
+            "stream": False
+        }
+        response = requests.post(url, json=payload, headers=headers)
+        if response.status_code == 200:
+            return response.json()['response']
+        else:
+            print(f"Error querying Ollama: {response.status_code}")
+            return None
 
     if active_llm == 'LM Studio':
         payload = {
@@ -77,17 +89,17 @@ def query_llm(prompt, active_llm, config=None):
         payload['stop'] = settings.get('stop', '').split(',')
 
 #### test ####
-#    print(f"URL: {url}")
-#    print(f"Headers: {headers}")
-#    print(f"Payload: {payload}")
+    print(f"URL: {url}")
+    print(f"Headers: {headers}")
+    print(f"Payload: {payload}")
 #### test ####
 
     try:
         response = requests.post(url, json=payload, headers=headers)
         response.raise_for_status()
         #### test ####
- #       print(f"Status Code: {response.status_code}")
- #       print(f"Response Content: {response.text}")
+        print(f"Status Code: {response.status_code}")
+        print(f"Response Content: {response.text}")
         #### test ####
         return response.json()
     except requests.RequestException as e:
@@ -143,9 +155,21 @@ def get_llm_response(prompt):
     if active_llm:
         response = query_llm(prompt, active_llm, config)
         if response:
-            cleaned_response = parse_list(response)
-            return get_response(cleaned_response, active_llm)
+            # First, extract the content if it's a dictionary
+            if isinstance(response, dict):
+                content = response.get('choices', [{}])[0].get('message', {}).get('content', '')
+                if not content:
+                    content = response.get('choices', [{}])[0].get('text', '')
+                if not content:
+                    content = str(response)  # Convert to string if we can't extract content
+            else:
+                content = str(response)  # Ensure we have a string
+
+            # Now parse the list from the content
+            cleaned_response = parse_list(content)
+            return cleaned_response  # No need for get_response here
         else:
             return "Error: Failed to get a response from the LLM"
     else:
         return "Error: No active Local LLM found"
+
