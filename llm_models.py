@@ -2,18 +2,14 @@ import requests
 
 def get_ollama_models():
     try:
-        import ollama
-        models = ollama.list()
-        if isinstance(models, dict) and 'models' in models:
+        response = requests.get("http://localhost:11434/api/tags")
+        if response.status_code == 200:
+            models = response.json()
             return [model['name'] for model in models['models']]
-        return models  # Assuming it's already a list of model names
-    except ImportError:
-        print("Ollama module not found. Please install it to use Ollama.")
         return []
     except Exception as e:
         print(f"Error fetching Ollama models: {e}")
         return []
-
 
 def get_lm_studio_models():
     try:

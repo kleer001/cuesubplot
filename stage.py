@@ -26,9 +26,9 @@ def clear_stage():
     for _ in range(MAX_ITEMS):
         outputs.extend([
             gr.update(visible=False),  # Row
-            gr.update(value="", visible=False),  # Item text
-            gr.update(visible=False),  # Process button
-            gr.update(value="", visible=False)  # Result text
+            gr.update(value="", visible=True),  # Item text
+            gr.update(visible=True),  # Process button
+            gr.update(value="", visible=True)  # Result text
         ])
     return outputs + [gr.update(value="Stage cleared")]  # Status message
 
@@ -45,29 +45,36 @@ with gr.Blocks(title="cuesubplot") as demo:
         item_components = []
         for i in range(MAX_ITEMS):
             with gr.Row(visible=False) as item_row:
-                process_btn = gr.Button(f"Riff On List Item {i + 1}", visible=False)
                 item = gr.Textbox(label=f"List Item {i + 1}", visible=False)
+                process_btn = gr.Button(f"Riff On List Item {i + 1}", visible=False)
             result = gr.Textbox(label=f"Riffing Result {i + 1}", visible=False)
             item_components.extend([item_row, item, process_btn, result])
+            print(f"Added components for item {i}: {[type(comp) for comp in [item_row, item, process_btn, result]]}")
 
+        print(f"Total item_components: {len(item_components)}")
 
         def process_first_prompt(zeroth, first, second):
             items = get_llm_response(f"{zeroth} {first}")
             item_list = items.split('\n')
             outputs = []
             for i, item_text in enumerate(item_list[:MAX_ITEMS]):
+                has_content = bool(item_text.strip())
                 outputs.extend([
-                    gr.update(visible=True),  # For the Row
+                    gr.update(visible=has_content),  # For the Row
                     gr.update(value=item_text, visible=True),  # For the Item
                     gr.update(visible=True),  # For the Process button
                     gr.update(visible=True, value="")  # For the Result
                 ])
             # Fill remaining slots with hidden components
             for _ in range(MAX_ITEMS - len(item_list)):
-                outputs.extend([gr.update(visible=False)] * 4)
+                outputs.extend([
+                    gr.update(visible=False),  # Row
+                    gr.update(value="", visible=True),  # Item
+                    gr.update(visible=True),  # Button
+                    gr.update(value="", visible=True)  # Result
+                ])
             outputs.append("Items generated")  # Status message
             return outputs
-
 
         submit_btn.click(
             process_first_prompt,
@@ -110,9 +117,11 @@ with gr.Blocks(title="cuesubplot") as demo:
         open_btn.click(
             open_file_wrapper,
             inputs=[open_input],
-            outputs=[zeroth_cue, first_cue, second_cue] + [comp for comp in item_components if
-                                                           isinstance(comp, gr.Textbox)] + [library_status_message]
+            outputs=[zeroth_cue, first_cue, second_cue] + item_components + [library_status_message]
         )
+
+        print(f"Number of item_components: {len(item_components)}")
+        print(f"Types of item_components: {[type(comp) for comp in item_components]}")
 
         clear_btn.click(
             clear_stage,

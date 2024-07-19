@@ -61,48 +61,47 @@ def save_results(zeroth_cue, first_cue, second_cue, *components):
 
 def open_file(file_path):
     if not os.path.exists(file_path):
-        return "", "", "", []  # Return an empty list for items instead of a fixed-size list
+        return "", "", "", []
 
     with open(file_path, 'r') as f:
         lines = f.readlines()
 
-    if len(lines) < 3:
-        return "", "", "", []
-
-    zeroth_cue = lines[0].strip().split(': ', 1)[1] if lines[0].startswith("0th Cue: ") else ""
-    first_cue = lines[1].strip().split(': ', 1)[1] if lines[1].startswith("1st Cue: ") else ""
-    second_cue = lines[2].strip().split(': ', 1)[1] if lines[2].startswith("2nd Cue: ") else ""
-
+    zeroth_cue = ""
+    first_cue = ""
+    second_cue = ""
     items_and_results = []
     current_item = ""
     current_result = ""
     reading_result = False
+    item_section_started = False
 
-    for line in lines[4:]:
-        if line.startswith("Item: "):
+    for line in lines:
+        line = line.strip()
+        if line.startswith("0th Cue: "):
+            zeroth_cue = line.split(': ', 1)[1]
+        elif line.startswith("1st Cue: "):
+            first_cue = line.split(': ', 1)[1]
+        elif line.startswith("2nd Cue: "):
+            second_cue = line.split(': ', 1)[1]
+        elif line.startswith("Item: "):
+            item_section_started = True
             if current_item:
-                items_and_results.append((current_item, True, current_result.strip()))
+                items_and_results.append((current_item, current_result.strip()))
                 current_result = ""
-            current_item = line.split(': ', 1)[1].strip()
+            current_item = line.split(': ', 1)[1]
             reading_result = False
-        elif line.startswith("******"):
-            reading_result = True
-        elif reading_result:
-            if line.startswith("Result:"):
-                continue
-            current_result += line
+        elif item_section_started:
+            if line.startswith("******"):
+                reading_result = True
+            elif reading_result:
+                if line.startswith("Result:"):
+                    continue
+                current_result += line + "\n"
 
     if current_item:
-        items_and_results.append((current_item, True, current_result.strip()))
+        items_and_results.append((current_item, current_result.strip()))
 
-    # Pad the items_and_results list to MAX_ITEMS
-    items_and_results += [("", False, "") for _ in range(MAX_ITEMS - len(items_and_results))]
-
-    # Flatten the list of tuples
-    flattened_outputs = [item for tuple in items_and_results for item in tuple]
-
-    return zeroth_cue, first_cue, second_cue, *flattened_outputs
-
+    return zeroth_cue, first_cue, second_cue, items_and_results
 
 def create_library_ui():
     with gr.Tab("Library"):
@@ -137,43 +136,42 @@ def save_results_wrapper(zeroth_cue, first_cue, second_cue, *components):
 # In file_utils.py
 
 def open_file_wrapper(file_obj):
-    total_outputs = 3 + MAX_ITEMS * 3 + 1  # 3 cues + (MAX_ITEMS * 3 components per item) + 1 status message
-
     if file_obj is None:
-        return [gr.update()] * (total_outputs - 1) + [
+        return [gr.update()] * (3 + MAX_ITEMS * 4) + [
             gr.update(value="Please select a file before clicking 'Open File'")]
 
     file_path = file_obj.name
-    results = open_file(file_path)
-    zeroth_cue, first_cue, second_cue = results[:3]
-    item_results = results[3:]
+    zeroth_cue, first_cue, second_cue, items_and_results = open_file(file_path)
+
+    print(f"Loaded data: {zeroth_cue}, {first_cue}, {second_cue}")
+    print(f"Items and results: {items_and_results}")
 
     outputs = [
-        gr.update(value=zeroth_cue),
-        gr.update(value=first_cue),
-        gr.update(value=second_cue)
+        gr.update(value=zeroth_cue, visible=bool(zeroth_cue)),
+        gr.update(value=first_cue, visible=bool(first_cue)),
+        gr.update(value=second_cue, visible=bool(second_cue))
     ]
 
     for i in range(MAX_ITEMS):
-        if i * 3 + 2 < len(item_results):
-            item_text = item_results[i * 3]
-            result_text = item_results[i * 3 + 2]
-
+        if i < len(items_and_results):
+            item_text, result_text = items_and_results[i]
+            has_content = bool(item_text.strip() or result_text.strip())
+            print(f"Item {i}: '{item_text}', Result: '{result_text}', Has content: {has_content}")
             outputs.extend([
-                gr.update(value=item_text, visible=True),
-                gr.update(visible=True),
-                gr.update(value=result_text, visible=bool(result_text))
+                gr.update(visible=has_content),  # Row
+                gr.update(value=item_text, visible=True),  # Item
+                gr.update(visible=True),  # Button
+                gr.update(value=result_text, visible=True)  # Result
             ])
         else:
             outputs.extend([
-                gr.update(value="", visible=False),
-                gr.update(visible=False),
-                gr.update(value="", visible=False)
+                gr.update(visible=False),  # Row
+                gr.update(value="", visible=True),  # Item
+                gr.update(visible=True),  # Button
+                gr.update(value="", visible=True)  # Result
             ])
 
-    outputs.append(gr.update(value=f"File opened: {os.path.basename(file_path)}"))
+    status_message = gr.update(value=f"File opened: {os.path.basename(file_path)}")
 
-    assert len(outputs) == total_outputs, f"Expected {total_outputs} outputs, but got {len(outputs)}"
-
-    return outputs
-
+    print(f"Number of outputs: {len(outputs)}")
+    return outputs + [status_message]
