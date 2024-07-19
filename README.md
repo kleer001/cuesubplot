@@ -109,3 +109,5 @@ Kurt Schwitters
 Rick Rubin
 
 Jonathan Mast
+
+My family, friends, and other loved ones. 
