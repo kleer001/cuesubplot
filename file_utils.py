@@ -3,6 +3,7 @@ from datetime import datetime
 from word_utils import extract_key_words
 import gradio as gr
 import configparser
+import math
 
 #The only setting we need on creation
 config = configparser.ConfigParser()
@@ -133,7 +134,10 @@ def save_results_wrapper(zeroth_cue, first_cue, second_cue, *components):
     return gr.update(value=full_path, visible=True), f"File saved as {os.path.basename(full_path)}"
 
 
-# In file_utils.py
+def calculate_lines(text, width=60):
+    lines = text.split('\n')
+    total_lines = sum(math.ceil(len(line) / width) for line in lines)
+    return max(1, total_lines)
 
 def open_file_wrapper(file_obj):
     if file_obj is None:
@@ -143,35 +147,34 @@ def open_file_wrapper(file_obj):
     file_path = file_obj.name
     zeroth_cue, first_cue, second_cue, items_and_results = open_file(file_path)
 
-    print(f"Loaded data: {zeroth_cue}, {first_cue}, {second_cue}")
-    print(f"Items and results: {items_and_results}")
-
     outputs = [
-        gr.update(value=zeroth_cue, visible=bool(zeroth_cue)),
-        gr.update(value=first_cue, visible=bool(first_cue)),
-        gr.update(value=second_cue, visible=bool(second_cue))
+        gr.update(value=zeroth_cue, visible=bool(zeroth_cue), lines=calculate_lines(zeroth_cue)),
+        gr.update(value=first_cue, visible=bool(first_cue), lines=calculate_lines(first_cue)),
+        gr.update(value=second_cue, visible=bool(second_cue), lines=calculate_lines(second_cue))
     ]
 
     for i in range(MAX_ITEMS):
         if i < len(items_and_results):
             item_text, result_text = items_and_results[i]
             has_content = bool(item_text.strip() or result_text.strip())
-            print(f"Item {i}: '{item_text}', Result: '{result_text}', Has content: {has_content}")
             outputs.extend([
                 gr.update(visible=has_content),  # Row
-                gr.update(value=item_text, visible=True),  # Item
+                gr.update(value=item_text, visible=True, lines=calculate_lines(item_text)),  # Item
                 gr.update(visible=True),  # Button
-                gr.update(value=result_text, visible=True)  # Result
+                gr.update(value=result_text, visible=True, lines=calculate_lines(result_text))  # Result
             ])
         else:
             outputs.extend([
                 gr.update(visible=False),  # Row
-                gr.update(value="", visible=True),  # Item
-                gr.update(visible=True),  # Button
-                gr.update(value="", visible=True)  # Result
+                gr.update(value="", visible=False),  # Item
+                gr.update(visible=False),  # Button
+                gr.update(value="", visible=False)  # Result
             ])
 
     status_message = gr.update(value=f"File opened: {os.path.basename(file_path)}")
+    outputs.append(status_message)
+
+    return outputs
 
     print(f"Number of outputs: {len(outputs)}")
     return outputs + [status_message]

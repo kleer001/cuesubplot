@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="move advanced write over">
+    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="Worked on, finished, and put flow chart into the readme. Hopefully that's enough explanation of the process to get people going. It still needs a story though.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/file_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stage.py" beforeDir="false" afterPath="$PROJECT_DIR$/stage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,7 +259,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721426340339</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Worked on, finished, and put flow chart into the readme. Hopefully that's enough explanation of the process to get people going. It still needs a story though.">
+      <option name="closed" value="true" />
+      <created>1721670292235</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1721670292235</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -296,7 +305,8 @@
     <MESSAGE value="Suddenly the file open isn't working right. Sigh. Still improving the README.md" />
     <MESSAGE value="more images" />
     <MESSAGE value="move advanced write over" />
-    <option name="LAST_COMMIT_MESSAGE" value="move advanced write over" />
+    <MESSAGE value="Worked on, finished, and put flow chart into the readme. Hopefully that's enough explanation of the process to get people going. It still needs a story though." />
+    <option name="LAST_COMMIT_MESSAGE" value="Worked on, finished, and put flow chart into the readme. Hopefully that's enough explanation of the process to get people going. It still needs a story though." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
