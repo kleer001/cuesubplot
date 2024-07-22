@@ -75,7 +75,15 @@ If there are more than one running it will pick the first one it finds.
 
 ### A FULL STAGE
 
-![Tab 1, The Stage](/images/Stage_01.png "Tabe 1, The Stage")
+![Tab 1, The Stage](/images/Stage_01.png "Tab 1, The Stage")
+
+### THE FLOW CHART
+
+This, of course, leaves out important parts, but aims at addressing the important creative process flow.
+Like, there's a lot of work that goes into separating the results of the List cue results into separate list items that can be addressed individually. 
+And there's nothing about the LLM settings or the APIs. 
+
+![Program Flow, more or less](/images/flowChart_01.png "Flowchart")
 
 ## COMMON PROBLEMS: 
 
@@ -91,6 +99,9 @@ If you run 'python3 findLLM' and it can't find anything then we need to turn on 
 **A:** It might be that your local LLM hasn't loaded a model to working with.
 Please make sure that you have loaded up a model file that we can send a request to. 
 
+**Q** Anything else? 
+
+**A** We're still in early Alpha release, so, it's probably a bug and should be squashed. Please submit and issue and we'll put it in the pile to be processed. 
 
 
 ## CREDITS: 
@@ -100,14 +111,16 @@ https://countwordsfree.com/stopwords
 
 ## Inspirations
 
-Allison Parrish 
+Allison Parrish (thematically)
 
-Kate Compton
+Kate Compton (structurally)
 
-Kurt Schwitters
+Kurt Schwitters (graphically)
 
-Rick Rubin
+Rick Rubin (musically)
 
-Jonathan Mast
+Jonathan Mast (promptly)
+
+Douglas Hofstadter (subconsciously)
 
 My family, friends, and other loved ones. 

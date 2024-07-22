@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="midway through README.md editing for first timer instructions">
-      <change afterPath="$PROJECT_DIR$/find_python_requirements.py" afterDir="false" />
+    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="move advanced write over">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/file_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/llm_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/llm_models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stage.py" beforeDir="false" afterPath="$PROJECT_DIR$/stage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,22 +60,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.dynamicPrompts_01.executor": "Run",
-    "Python.dynamicPrompts_02.executor": "Run",
-    "Python.dynamicPrompts_03.executor": "Run",
-    "Python.file_utils.executor": "Run",
-    "Python.llm_models.executor": "Run",
-    "Python.stage.executor": "Run",
-    "Python.text_utils.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/menser/Dropbox/ai/code/cuesubplot",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.dynamicPrompts_01.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dynamicPrompts_02.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dynamicPrompts_03.executor&quot;: &quot;Run&quot;,
+    &quot;Python.file_utils.executor&quot;: &quot;Run&quot;,
+    &quot;Python.llm_models.executor&quot;: &quot;Run&quot;,
+    &quot;Python.stage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.text_utils.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/menser/Dropbox/ai/code/cuesubplot&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
@@ -238,7 +234,31 @@
       <option name="project" value="LOCAL" />
       <updated>1721339524768</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Suddenly the file open isn't working right. Sigh. Still improving the README.md">
+      <option name="closed" value="true" />
+      <created>1721425759963</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1721425759963</updated>
+    </task>
+    <task id="LOCAL-00019" summary="more images">
+      <option name="closed" value="true" />
+      <created>1721426260695</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1721426260695</updated>
+    </task>
+    <task id="LOCAL-00020" summary="move advanced write over">
+      <option name="closed" value="true" />
+      <created>1721426340339</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1721426340339</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -273,7 +293,10 @@
     <MESSAGE value="fixed oobabooga integration, working on UX and Readme.md information for prospective alpha team. Had a problem with running ollama again (typo hahah) Ran into save bug, will fix soon." />
     <MESSAGE value="working smoothly in all parts, save and load was bumpy, on to Instruction manual and general Readme filling out" />
     <MESSAGE value="midway through README.md editing for first timer instructions" />
-    <option name="LAST_COMMIT_MESSAGE" value="midway through README.md editing for first timer instructions" />
+    <MESSAGE value="Suddenly the file open isn't working right. Sigh. Still improving the README.md" />
+    <MESSAGE value="more images" />
+    <MESSAGE value="move advanced write over" />
+    <option name="LAST_COMMIT_MESSAGE" value="move advanced write over" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
