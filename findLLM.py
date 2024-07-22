@@ -1,54 +1,55 @@
+import configparser
 import requests
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import time
 
 
-def check_llm(name, url, headers=None):
+def load_config(file_path='settings.cfg'):
+    config = configparser.ConfigParser()
+    config.read(file_path)
+    return config
+
+
+def check_llm(name, url, endpoint):
     try:
-        response = requests.get(url, headers=headers, timeout=2)
-        if response.status_code in [200, 405, 422]:
+        full_url = f"{url}{endpoint}"
+        print(f"Checking {name} at {full_url}")
+        response = requests.get(full_url, timeout=2)
+        if response.status_code == 200:
+            print(f"{name} is available")
             return name
-    except requests.RequestException:
-        pass
+        else:
+            print(f"{name} returned status code {response.status_code}")
+    except requests.RequestException as e:
+        print(f"Error checking {name}: {e}")
     return None
 
 
 def find_local_LLM():
-    llms = [
-        ("Ollama", "http://localhost:11434/api/version"),
-        ("LM Studio", "http://localhost:1234/v1/models"),
-        ("GPT4All", "http://localhost:4891/v1/models"),
-        ("LocalAI", "http://localhost:8080/v1/models"),
-        ("llama.cpp", "http://localhost:8000/v1/models"),
-        ("oobabooga", "http://127.0.0.1:5000/v1/completions")
-    ]
+    config = load_config()
 
-    try:
-        with open('key.api', 'r') as key_file:
-            api_key = key_file.read().strip()
-    except FileNotFoundError:
-        api_key = None
+    llms = []
+    for section in config.sections():
+        if section == 'DEFAULT':
+            continue
+        url = config[section].get('url')
+        endpoint = config[section].get('models_endpoint', '')
+        if url:
+            llms.append((section, url, endpoint))
 
-    headers = {"Authorization": f"Bearer {api_key}"} if api_key else None
+    print(f"Found {len(llms)} potential LLMs in config")
 
-    with ThreadPoolExecutor(max_workers=6) as executor:
-        future_to_llm = {executor.submit(check_llm, name, url, headers): name for name, url in llms}
+    with ThreadPoolExecutor(max_workers=len(llms)) as executor:
+        future_to_llm = {executor.submit(check_llm, name, url, endpoint): name for name, url, endpoint in llms}
         for future in as_completed(future_to_llm):
             result = future.result()
             if result:
+                print(f"Returning active LLM: {result}")
                 return result
 
+    print("No active LLM found")
     return None
 
 
 if __name__ == "__main__":
-    start_time = time.time()
     active_llm = find_local_LLM()
-    end_time = time.time()
-
-    if active_llm:
-        print(f"Active Local LLM found: {active_llm}")
-    else:
-        print("No active Local LLM found")
-
-    print(f"Time taken: {end_time - start_time:.2f} seconds")
+    print(f"Active LLM: {active_llm}")

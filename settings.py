@@ -17,18 +17,8 @@ def update_max_items(value):
 def load_settings():
     global settings, active_llm
     config = configparser.ConfigParser()
-    if os.path.exists("settings.cfg"):
-        config.read("settings.cfg")
-    else:
-        # Create a default settings file if it doesn't exist
-        config["DEFAULT"] = {
-            "active_llm": active_llm or "Unknown",
-            "model": "",
-            "messy": "False",
-            "max_items": "5"
-        }
-        with open("settings.cfg", "w") as configfile:
-            config.write(configfile)
+    config.read("settings.cfg")
+
 
     # Load general settings
     settings = dict(config["DEFAULT"])

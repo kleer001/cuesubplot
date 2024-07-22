@@ -1,71 +1,51 @@
 import requests
-
-def get_ollama_models():
-    try:
-        response = requests.get("http://localhost:11434/api/tags")
-        if response.status_code == 200:
-            models = response.json()
-            return [model['name'] for model in models['models']]
-        return []
-    except Exception as e:
-        print(f"Error fetching Ollama models: {e}")
-        return []
-
-def get_lm_studio_models():
-    try:
-        response = requests.get("http://localhost:1234/v1/models")
-        if response.status_code == 200:
-            return [model['id'] for model in response.json()['data']]
-        return []
-    except Exception as e:
-        print(f"Error fetching LM Studio models: {e}")
-        return []
+import configparser
 
 
-def get_gpt4all_models():
-    try:
-        response = requests.get("http://localhost:4891/v1/models")
-        if response.status_code == 200:
-            return [model['id'] for model in response.json()['data']]
-        return []
-    except Exception as e:
-        print(f"Error fetching GPT4All models: {e}")
-        return []
-
-
-def get_localai_models():
-    try:
-        response = requests.get("http://localhost:8080/v1/models")
-        if response.status_code == 200:
-            return [model['id'] for model in response.json()['data']]
-        return []
-    except Exception as e:
-        print(f"Error fetching LocalAI models: {e}")
-        return []
-
-
-def get_oobabooga_models():
-    try:
-        response = requests.get("http://localhost:5000/api/v1/model")
-        if response.status_code == 200:
-            return response.json()['model_names']
-        return []
-    except Exception as e:
-        print(f"Error fetching oobabooga models: {e}")
-        return []
+def load_config():
+    config = configparser.ConfigParser()
+    config.read('settings.cfg')
+    return config
 
 
 def get_models(llm_name):
-    model_fetchers = {
-        "Ollama": get_ollama_models,
-        "LM Studio": get_lm_studio_models,
-        "GPT4All": get_gpt4all_models,
-        "LocalAI": get_localai_models,
-        "oobabooga": get_oobabooga_models
-    }
+    config = load_config()
 
-    if llm_name in model_fetchers:
-        return model_fetchers[llm_name]()
-    else:
-        print(f"No model fetcher available for LLM: {llm_name}")
+    if llm_name not in config:
+        print(f"No configuration found for LLM: {llm_name}")
         return []
+
+    settings = config[llm_name]
+
+    if 'models_endpoint' not in settings:
+        print(f"No models endpoint configured for LLM: {llm_name}")
+        return []
+
+    url = f"{settings['url']}{settings['models_endpoint']}"
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
+
+        models_key = settings.get('models_key', 'data')
+        model_name_key = settings.get('model_name_key', 'id')
+
+        if models_key in data:
+            return [model[model_name_key] for model in data[models_key]]
+        elif isinstance(data, list):
+            return [model[model_name_key] for model in data]
+        else:
+            print(f"Unexpected response structure from {llm_name}")
+            return []
+    except requests.RequestException as e:
+        print(f"Error fetching {llm_name} models: {e}")
+        return []
+
+
+# Example usage
+if __name__ == "__main__":
+    llms = ["Ollama", "LM Studio", "GPT4All", "LocalAI", "oobabooga"]
+    for llm in llms:
+        models = get_models(llm)
+        print(f"{llm} models: {models}")
