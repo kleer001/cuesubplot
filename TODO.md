@@ -2,12 +2,12 @@
 
 # Meta 
 
-[ ] add custom LLM API location and POST/GET template?!
-
-[ ] make adaptive llm finder, POST/GET template, and API key handler 
 
 # Code
 
+[] Create setup script
+
+[] finish Readme.md
 
 # Marketing
 
@@ -31,6 +31,19 @@ https://www.reddit.com/r/ollama/
 
 https://www.reddit.com/r/LocalLLaMA/
 
+[] Email your project heroes (living)
+
+[]- [Allison Parrish](https://www.decontextualize.com) (thematically)
+
+aparrish@nyu.edu
+
+[]- [Kate Compton](https://github.com/galaxykate) (structurally)
+ 
+[]- [Rick Rubin](https://en.wikipedia.org/wiki/Rick_Rubin) (musically)
+ 
+[]- [Jonathan Mast](https://jonathanmast.com/) (promptly)
+ 
+[]- [Douglas Hofstadter](https://en.wikipedia.org/wiki/Douglas_Hofstadter) (subconsciously)
 
 ### Progress
 
@@ -61,8 +74,14 @@ https://www.reddit.com/r/LocalLLaMA/
 
 [X] Fix text edge case where list starts with somthing other than a number like: 
 
+(it wasn't working because we weren't using the fucntion!)
+
 I like food, and here are some good ones
 
 1. potatoes they're great
 
 2. love french fries too!
+
+3. [X] add custom LLM API location and POST/GET template?! Put it in settings.cfg
+
+[X] make adaptive llm finder, POST/GET template, and API key handler 
