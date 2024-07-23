@@ -37,29 +37,27 @@ Through [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
 <code>git clone https://github.com/kleer001/cuesubplot ; cd cuesubplot
 </code>
 
+* 3 - load the dependencies (local venv?) 
+
+* 4 - Run the program
+
+<code> python3 stage.py
+
 ## Currently supported LLMS platforms
 
 * in  settings.cfg
 
 | LLM Platform | URL             | Endpoint             |
 |--------------|-----------------|----------------------|
-| Ollama       | localhost:11434 | /api/generate        |
-| LM Studio    | localhost:1234  | /v1/chat/completions |
-| GPT4All      | localhost:4891  | /v1/completions      |
-| LocalAI      | localhost:8080  | /v1/chat/completions |
-| llama.cpp    | localhost:8080  | /completion          |
-| oobabooga    | localhost:5000  | /v1/chat/completions |
+| [Ollama](https://ollama.ai/)       | localhost:11434 | /api/generate        |
+| [LM Studio](https://lmstudio.ai/)    | localhost:1234  | /v1/chat/completions |
+| [GPT4All](https://gpt4all.io/)      | localhost:4891  | /v1/completions      |
+| [LocalAI](https://localai.io/)      | localhost:8080  | /v1/chat/completions |
+| [llama.cpp](https://github.com/ggerganov/llama.cpp)    | localhost:8080  | /completion          |
+| [oobabooga](https://github.com/oobabooga/text-generation-webui)    | localhost:5000  | /v1/chat/completions |
 
 * Please suggest more free local LLMs if you like. And feel free to change your local settings.cfg to fit your own purposes. The structure should be self evident from the examples in it.
 * Support for Chat-GPT, Perplexity, Claude, and other paid platforms is imminent, though not guaranteed. 
-
-## HOW-TO Start (automagical)
-
-* 1 - You can quickly set up the project using our setup script:
-
-<code>```bash
-curl -sSL https://raw.githubusercontent.com/yourusername/your-repo-name/main/setup.sh | bash</code>
-
 
 
 ## GUI WALK THROUGH
