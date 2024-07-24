@@ -1,5 +1,5 @@
 <div align="center">
-<img src="/images/masks_base_banner_01.png" alt="Logo">
+    <img src="/images/masks_base_banner_01.png" alt="Logo">
 </div>
 
 # **cuesubplot:** *A web interface for procedurally branching results from three promptlets*
