@@ -1,9 +1,15 @@
-# **cuesubplot:** *Web interface for procedurally branching results from three promptlets*
+<div align="center">
+<img src="/images/masks_base_banner_01.png" alt="Logo">
+</div>
 
-# What? :speech_balloon:
+# **cuesubplot:** *A web interface for procedurally branching results from three promptlets*
+
+# <code>*Craft complex stories, simply, reliably*</code>
+
+# :speech_balloon: What? 
 Cuesubplot is a hardcoded (sadly not generalized yet) network for creating branching results **reliably** from a local LLM.
 
-# Why? :bulb:
+# :bulb: Why? 
 
 Over a several months I became increasing frustrated with the inability of the current crop of free online LLMs to manage generating very long and complicated multistep outputs, such as a 12-week program to learn a new skill like salesmanship or to generate a critique a famous song, line by line, from multiple angles. 
 
@@ -15,14 +21,14 @@ Through [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
 
 *Additionally, I wanted to join the local LLM evolution and contribute to the community of programmers and users that loving doing what I loved to do to, generate text and push what these LLMs could do.*
 
-# How :zap:
+# :zap: How 
 > [!TIP]
 > ## **1** - Set a ***role***
 > ## **2** - Create a ***list***
 > ## **3** - Elaborate (or "***riff***") on the list
  
 
-# Start (manual) :sparkles:
+# :sparkles: Start (manual) 
 * 1 - Make sure you have git installed.  
 <code> https://github.com/git-guides/install-git </code>
 * 2 - Copy the repo  
@@ -32,7 +38,7 @@ Through [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
 * 4 - Run the program  
 <code> python3 stage.py</code>
 
-## Currently supported LLMS platforms :package:
+## :package: Currently supported LLMS platforms 
 *in  settings.cfg*  
 
 | LLM Platform | URL             | Endpoint             |
@@ -47,8 +53,8 @@ Through [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
 * Please suggest more free local LLMs if you like. And feel free to change your local settings.cfg to fit your own purposes. The structure should be self evident from the examples in it.  
 * Support for Chat-GPT, Perplexity, Claude, and other paid platforms is imminent, though not guaranteed. 
 
-## GUI WALK THROUGH :walking:
-### THE STAGE :eyes:
+## :walking: GUI WALK THROUGH 
+### :eyes: THE STAGE 
 * 1 - At ***Role*** enter a role you want the LLM to take, a perspective, personality.   
 This will be added as a prefix mini-prompt (forthwith to be known as a **cue**) to the rest of the prompts you'll create.   
 * 2 - At ***List generation*** enter the list you would like to generate. For best results use the phrasing something like
@@ -63,7 +69,7 @@ I recommend processing the first one a few times until you're happy, then procee
 
 ![Tab 1, The Stage](/images/Stage_02.png "Tab 1, The Stage")
 
-### THE LIBRARY :writing_hand:
+### :writing_hand: THE LIBRARY 
 
 Here we can Save, Load, and clear the Stage.   
 * **Save Results**: The files are named automagically based on your prompts, the date, and time.  
@@ -73,7 +79,7 @@ Here we can Save, Load, and clear the Stage.
 
 ![Tab 2, The Library](/images/Library_02.png "Tab 2, The Library")
 
-### THE SETTINGS :brain:
+### :brain: THE SETTINGS 
 **Settings for XXX** Will be based on the local LLM the program detects that is currently running.  
 If there are more than one running it will pick the first one it finds.   
 * Model: Not all local LLMs let you specify the model through the API. Some require the user to load the model before the api will return a query.  
@@ -86,11 +92,11 @@ If there are more than one running it will pick the first one it finds.
 
 ![Tab 3, The Settings](/images/Settings_02.png "Tab 3, the Settings")
 
-### A FULL STAGE :performing_arts:
+### :performing_arts: A FULL STAGE 
 
 ![Tab 1, The Stage](/images/Stage_01.png "Tab 1, The Stage")
 
-### THE FLOW CHART
+### :chart_with_upwards_trend: THE FLOW CHART
 
 This, of course, leaves out important parts, but aims at addressing the important creative process flow.  
 Like, there's a lot of work that goes into separating the results of the List cue results into separate list items that can be addressed individually.   
@@ -98,7 +104,7 @@ And there's nothing about the LLM settings or the APIs.
 
 ![Program Flow, more or less](/images/flowChart_01.png "Flowchart")
 
-## COMMON PROBLEMS: :bug:
+## :bug: COMMON PROBLEMS: 
 
 **Q:** Why isn't my LLM responding?   
 **A:** Please double-check that it's properly serving up API goodness.   
@@ -106,18 +112,19 @@ The settings.cfg file contains multiple popular local LLMs and their API end poi
 The findLLM.py uses that list to quickly search your system for a recognizable local LLM.  
 If you run 'python3 findLLM' and it can't find anything then we need to turn on your local LLM.
 
-**Q**: My LLM is recognized. Why am I not getting output from cuesubplot?     
+**Q:**: My LLM is recognized. Why am I not getting output from cuesubplot?     
 **A:** It might be that your local LLM hasn't loaded a model to working with.  
 Please make sure that you have loaded up a model file that we can send a request to.   
-**Q** Anything else?  
-**A** We're still in early Alpha release, so, it's probably a bug and should be squashed. Please submit an issue, and we'll put it in the pile to be processed.   
 
-## CREDITS: :wrench:
+**Q:** Anything else?  
+**A:** We're still in early Alpha release, so, it's probably a bug and should be squashed. Please submit an issue, and we'll put it in the pile to be processed.   
+
+## :wrench: CREDITS: 
 
 stopwords.data file from: 
 https://countwordsfree.com/stopwords
 
-## Inspirations :art:
+## :art: Inspirations 
 
 - [Allison Parrish](https://www.decontextualize.com) (thematically)  
 - [Kate Compton](https://github.com/galaxykate) (structurally)  
@@ -128,13 +135,4 @@ https://countwordsfree.com/stopwords
 
 My family, friends, and other loved ones. :heart: 
 
-
-'''mermaid
-graph TD
-1P + 2P --> L1;
-1P + 3P + L1 > R1;
-1P + 3P + L2 > R2;
-1P + 3P + L3 > R3;
-1P + 2P + 3P + L1 + R1 + L2 + R2 + L3 + R3 > FW;
-'''
 
