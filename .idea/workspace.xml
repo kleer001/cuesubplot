@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="Worked on, finished, and put flow chart into the readme. Hopefully that's enough explanation of the process to get people going. It still needs a story though.">
+    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="fixing image">
+      <change afterPath="$PROJECT_DIR$/backup_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/file_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/settings.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stage.py" beforeDir="false" afterPath="$PROJECT_DIR$/stage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,22 +64,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.dynamicPrompts_01.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dynamicPrompts_02.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dynamicPrompts_03.executor&quot;: &quot;Run&quot;,
-    &quot;Python.file_utils.executor&quot;: &quot;Run&quot;,
-    &quot;Python.llm_models.executor&quot;: &quot;Run&quot;,
-    &quot;Python.stage.executor&quot;: &quot;Run&quot;,
-    &quot;Python.text_utils.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/menser/Dropbox/ai/code/cuesubplot&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.dynamicPrompts_01.executor": "Run",
+    "Python.dynamicPrompts_02.executor": "Run",
+    "Python.dynamicPrompts_03.executor": "Run",
+    "Python.file_utils.executor": "Run",
+    "Python.llm_models.executor": "Run",
+    "Python.llm_utils.executor": "Run",
+    "Python.stage.executor": "Run",
+    "Python.text_utils.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/menser/Dropbox/ai/code/cuesubplot",
+    "settings.editor.selected.configurable": "preferences.editor"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/tests" />
@@ -267,7 +271,71 @@
       <option name="project" value="LOCAL" />
       <updated>1721670292235</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="cleaned up gui on file open with dynamic box height calculating lines">
+      <option name="closed" value="true" />
+      <created>1721675003770</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1721675003770</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Completely refactored LLM info to stay in the settings.cfg file and nowhere else, yay! Now back to tests and maybe we'll release the alpha some day soon. Woot?">
+      <option name="closed" value="true" />
+      <created>1721688715573</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1721688715573</updated>
+    </task>
+    <task id="LOCAL-00024" summary="improved flow chart readability">
+      <option name="closed" value="true" />
+      <created>1721761496254</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1721761496254</updated>
+    </task>
+    <task id="LOCAL-00025" summary="added more information and friendliness to Readme.md and updated TODO.md">
+      <option name="closed" value="true" />
+      <created>1721773428229</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1721773428229</updated>
+    </task>
+    <task id="LOCAL-00026" summary="little readme addition">
+      <option name="closed" value="true" />
+      <created>1721773792911</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1721773792911</updated>
+    </task>
+    <task id="LOCAL-00027" summary="more readme buff and polish, not that the rest of the code is done">
+      <option name="closed" value="true" />
+      <created>1721841010872</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1721841010872</updated>
+    </task>
+    <task id="LOCAL-00028" summary="more readme buff and polish, should be done with this for the day, enough creativity no doubt">
+      <option name="closed" value="true" />
+      <created>1721854737160</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1721854737160</updated>
+    </task>
+    <task id="LOCAL-00029" summary="fixing image">
+      <option name="closed" value="true" />
+      <created>1721855034485</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1721855034486</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -285,10 +353,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="first pass just tests" />
-    <MESSAGE value="even more options and settings and save and open is broken" />
-    <MESSAGE value="figuring out github hope i didn't break anything" />
-    <MESSAGE value="cleaned up file save" />
     <MESSAGE value="squashed save bug and creative file name (probably too expensive)" />
     <MESSAGE value="lovely save name and stop word data file from https://countwordsfree.com/stopwords" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
@@ -306,17 +370,14 @@
     <MESSAGE value="more images" />
     <MESSAGE value="move advanced write over" />
     <MESSAGE value="Worked on, finished, and put flow chart into the readme. Hopefully that's enough explanation of the process to get people going. It still needs a story though." />
-    <option name="LAST_COMMIT_MESSAGE" value="Worked on, finished, and put flow chart into the readme. Hopefully that's enough explanation of the process to get people going. It still needs a story though." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/llm_utils.py</url>
-          <line>91</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="cleaned up gui on file open with dynamic box height calculating lines" />
+    <MESSAGE value="Completely refactored LLM info to stay in the settings.cfg file and nowhere else, yay! Now back to tests and maybe we'll release the alpha some day soon. Woot?" />
+    <MESSAGE value="improved flow chart readability" />
+    <MESSAGE value="added more information and friendliness to Readme.md and updated TODO.md" />
+    <MESSAGE value="little readme addition" />
+    <MESSAGE value="more readme buff and polish, not that the rest of the code is done" />
+    <MESSAGE value="more readme buff and polish, should be done with this for the day, enough creativity no doubt" />
+    <MESSAGE value="fixing image" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing image" />
   </component>
 </project>

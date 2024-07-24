@@ -126,6 +126,8 @@ https://countwordsfree.com/stopwords
 
 ## :art: Inspirations 
 
+### People
+
 - [Allison Parrish](https://www.decontextualize.com) (thematically)  
 - [Kate Compton](https://github.com/galaxykate) (structurally)  
 - [Kurt Schwitters](https://en.wikipedia.org/wiki/Kurt_Schwitters) (graphically)  
@@ -133,6 +135,10 @@ https://countwordsfree.com/stopwords
 - [Jonathan Mast](https://jonathanmast.com/) (promptly)  
 - [Douglas Hofstadter](https://en.wikipedia.org/wiki/Douglas_Hofstadter) (subconsciously)  
 
-My family, friends, and other loved ones. :heart: 
+My family, friends, and other loved ones  
+ *the ones still extant and those sadly extinct* :heart: 
 
+### Software (previously unmentioned)
 
+- [Houdini](https://www.sidefx.com/products/houdini/)
+- [Nuke](https://www.foundry.com/products/nuke)
