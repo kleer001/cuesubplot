@@ -2,14 +2,15 @@ import gradio as gr
 import configparser
 from file_utils import open_file_wrapper, save_results_wrapper
 from llm_utils import get_llm_response
-from settings import create_settings_interface
 from datetime import datetime
 import json
+from findLLM import find_local_LLM
 
 # Load configuration
 config = configparser.ConfigParser()
 config.read('settings.cfg')
 MAX_ITEMS = int(config['DEFAULT']['max_items'])
+active_llm = find_local_LLM()
 
 def load_autosaved_data():
     try:
@@ -86,6 +87,8 @@ def process_first_prompt(zeroth, first, second):
     return outputs
 
 with gr.Blocks() as demo:
+    gr.Markdown(f"## {active_llm}")
+
     with gr.Tab("Stage"):
         zeroth_cue = gr.Textbox(label="Role (applied to all prompts)", lines=1, value=autosaved_data.get("Role", ""))
         first_cue = gr.Textbox(label="List generation (ask for a numbered list)", lines=1, value=autosaved_data.get("List generation", ""))
@@ -161,8 +164,6 @@ with gr.Blocks() as demo:
             outputs=[zeroth_cue, first_cue, second_cue] + [comp for comp in item_components if isinstance(comp, gr.Textbox)] + [library_status_message]
         )
 
-    with gr.Tab("Settings"):
-        create_settings_interface()
 
 if __name__ == "__main__":
     demo.launch()

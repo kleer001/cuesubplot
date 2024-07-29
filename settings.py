@@ -3,6 +3,7 @@ import configparser
 from findLLM import find_local_LLM
 from llm_models import get_models
 
+
 # Global settings
 settings = {}
 active_llm = find_local_LLM()
