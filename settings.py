@@ -1,5 +1,4 @@
 import gradio as gr
-import os
 import configparser
 from findLLM import find_local_LLM
 from llm_models import get_models
@@ -19,7 +18,6 @@ def load_settings():
     config = configparser.ConfigParser()
     config.read("settings.cfg")
 
-
     # Load general settings
     settings = dict(config["DEFAULT"])
 
@@ -27,9 +25,11 @@ def load_settings():
     if active_llm and active_llm in config:
         settings.update(dict(config[active_llm]))
 
-    # Convert types
     settings["messy"] = settings.get("messy", "False").lower() == "true"
     settings["max_items"] = int(settings.get("max_items", "5"))
+    settings["auto_backup_interval"] = int(settings.get("auto_backup_interval", "300"))
+    settings["auto_load_backup"] = settings.get("auto_load_backup", "True").lower() == "true"
+
 
 def save_settings():
     config = configparser.ConfigParser()
@@ -42,7 +42,9 @@ def save_settings():
         "active_llm": active_llm,
         "model": settings.get("model", ""),
         "messy": str(settings.get("messy", False)),
-        "max_items": str(settings.get("max_items", 5))
+        "max_items": str(settings.get("max_items", 5)),
+        "auto_backup_interval": str(settings.get("auto_backup_interval", 30)),
+        "auto_load_backup": str(settings.get("auto_load_backup", True))
     })
 
     # Update LLM-specific settings
@@ -74,6 +76,10 @@ def create_settings_interface():
     input_components.append(gr.Dropdown(choices=get_models(active_llm), value=settings.get("model", ""), label="Model"))
     input_components.append(gr.Checkbox(value=settings.get("messy", False), label="Messy"))
     input_components.append(gr.Number(value=settings.get("max_items", 5), label="Maximum number of items", precision=0))
+    input_components.append(
+        gr.Number(value=settings.get("auto_backup_interval", 300), label="Auto-backup interval (seconds)", precision=0))
+    input_components.append(
+        gr.Checkbox(value=settings.get("auto_load_backup", True), label="Auto-load backup on startup"))
 
     # LLM-specific settings
     input_components.append(gr.Number(value=settings.get("max_tokens", 100), label="Max Tokens"))
@@ -84,17 +90,20 @@ def create_settings_interface():
     **Note:** Changes to MAX_ITEMS will require a browser refresh to take effect on the UI layout.
     """)
 
-    def update_settings(model, messy, max_items, max_tokens, temperature, stream):
+    def update_settings(model, messy, max_items, max_tokens, temperature, stream, auto_backup_interval,
+                        auto_load_backup):
         settings.update({
             "model": model,
             "messy": messy,
             "max_items": int(max_items),
             "max_tokens": int(max_tokens),
             "temperature": float(temperature),
-            "stream": stream
+            "stream": stream,
+            "auto_backup_interval": int(auto_backup_interval),
+            "auto_load_backup": auto_load_backup
         })
         save_settings()
-        return f"Settings updated. MAX_ITEMS is now {settings['max_items']}. Please refresh your browser for the changes to take effect."
+        return f"If MAX_ITEMS {settings['max_items']} changed reload browser. Auto-backup {settings['auto_backup_interval']} seconds. Auto-load backup {'enabled' if settings['auto_load_backup'] else 'disabled'}."
 
     update_button = gr.Button("Update Settings")
     update_output = gr.Textbox(label="Update Status")
