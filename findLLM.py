@@ -20,7 +20,7 @@ def check_llm(name, url, endpoint):
         else:
             print(f"{name} returned status code {response.status_code}")
     except requests.RequestException as e:
-        print(f"Error checking {name}: {e}")
+        print(f" {name}: {e}")
     return None
 
 

@@ -148,9 +148,9 @@ def open_file_wrapper(file_obj):
     zeroth_cue, first_cue, second_cue, items_and_results = open_file(file_path)
 
     outputs = [
-        gr.update(value=zeroth_cue, visible=bool(zeroth_cue), lines=calculate_lines(zeroth_cue)),
-        gr.update(value=first_cue, visible=bool(first_cue), lines=calculate_lines(first_cue)),
-        gr.update(value=second_cue, visible=bool(second_cue), lines=calculate_lines(second_cue))
+        gr.update(value=zeroth_cue, visible=True, lines=calculate_lines(zeroth_cue)),
+        gr.update(value=first_cue, visible=True, lines=calculate_lines(first_cue)),
+        gr.update(value=second_cue, visible=True, lines=calculate_lines(second_cue))
     ]
 
     for i in range(MAX_ITEMS):

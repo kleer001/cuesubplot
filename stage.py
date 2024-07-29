@@ -3,11 +3,54 @@ import configparser
 from file_utils import open_file_wrapper, save_results_wrapper
 from llm_utils import get_llm_response
 from settings import create_settings_interface
+from datetime import datetime
+import json
 
 # Load configuration
 config = configparser.ConfigParser()
 config.read('settings.cfg')
 MAX_ITEMS = int(config['DEFAULT']['max_items'])
+
+def load_autosaved_data():
+    try:
+        with open("autosaved_data.json", "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+def collect_and_save(changed_field, changed_value):
+    try:
+        # Try to load existing data
+        try:
+            with open("autosaved_data.json", "r") as f:
+                data = json.load(f)
+        except FileNotFoundError:
+            data = {}
+
+        # Update the changed field
+        data[changed_field] = changed_value
+        data['last_updated'] = datetime.now().isoformat()
+
+        # Write all data back to JSON file
+        with open("autosaved_data.json", "w") as f:
+            json.dump(data, f, indent=2)
+
+        # Convert to text file
+        json_to_text(data)
+
+        return f"{changed_field} autosaved successfully"
+    except Exception as e:
+        print(f"Error saving data: {e}")
+        return f"An error occurred while saving {changed_field}"
+
+def json_to_text(data):
+    with open("autosaved_data.txt", "w") as f:
+        for key, value in data.items():
+            if key != 'last_updated':
+                f.write(f"{key}:\n{value}\n\n")
+        f.write(f"Last Updated: {data.get('last_updated', 'Unknown')}")
+
+# Load autosaved data at the start
+autosaved_data = load_autosaved_data()
 
 def process_item(zeroth_cue, item_text, second_prompt, item_index):
     full_prompt = f"{zeroth_cue} {second_prompt} {item_text}"
@@ -42,21 +85,25 @@ def process_first_prompt(zeroth, first, second):
     outputs.append("Items generated")  # Status message
     return outputs
 
-with gr.Blocks(title="cuesubplot") as demo:
+with gr.Blocks() as demo:
     with gr.Tab("Stage"):
-        zeroth_cue = gr.Textbox(label="Role (applied to all prompts)", lines=1)
-        first_cue = gr.Textbox(label="List generation (ask for a numbered list)", lines=1)
-        second_cue = gr.Textbox(label="Riff on the list (is applied before the list item)", lines=1)
+        zeroth_cue = gr.Textbox(label="Role (applied to all prompts)", lines=1, value=autosaved_data.get("Role", ""))
+        first_cue = gr.Textbox(label="List generation (ask for a numbered list)", lines=1, value=autosaved_data.get("List generation", ""))
+        second_cue = gr.Textbox(label="Riff on the list (is applied before the list item)", lines=1, value=autosaved_data.get("Riff on the list", ""))
         submit_btn = gr.Button("Submit Request for List")
+
         status_message = gr.Textbox(label="Status", interactive=False)
 
         item_components = []
         for i in range(MAX_ITEMS):
-            with gr.Row(visible=False) as item_row:
-                item = gr.Textbox(label=f"List Item {i + 1}", visible=False, lines=1)
-                process_btn = gr.Button(f"Riff On List Item {i + 1}", visible=False)
-            result = gr.Textbox(label=f"Riffing Result {i + 1}", visible=False, lines=1)
+            item_data = autosaved_data.get(f"List Item {i+1}", "")
+            item_visible = bool(item_data)  # True if item_data is not empty
+            with gr.Row(visible=item_visible) as item_row:
+                item = gr.Textbox(label=f"List Item {i + 1}", visible=item_visible, lines=1, value=item_data)
+                process_btn = gr.Button(f"Riff On List Item {i + 1}", visible=item_visible)
+            result = gr.Textbox(label=f"Riffing Result {i + 1}", visible=item_visible, lines=1)
             item_components.extend([item_row, item, process_btn, result])
+
 
         submit_btn.click(
             process_first_prompt,
@@ -71,6 +118,17 @@ with gr.Blocks(title="cuesubplot") as demo:
                 inputs=[zeroth_cue, item_components[i * 4 + 1], second_cue, gr.State(i)],
                 outputs=[item_components[i * 4 + 3]]
             )
+
+    # Autosave functionality for main textboxes
+        for textbox, name in [(zeroth_cue, "Role"), (first_cue, "List generation"), (second_cue, "Riff on the list")]:
+            textbox.change(fn=collect_and_save, inputs=[gr.Textbox(value=name, visible=False), textbox], outputs=None)
+            textbox.blur(fn=collect_and_save, inputs=[gr.Textbox(value=name, visible=False), textbox], outputs=None)
+
+        # Autosave functionality for list items
+        for i, item in enumerate(item_components[1::4]):  # Every 4th element starting from index 1 is an item textbox
+            item.change(fn=collect_and_save, inputs=[gr.Textbox(value=f"List Item {i+1}", visible=False), item], outputs=None)
+            item.blur(fn=collect_and_save, inputs=[gr.Textbox(value=f"List Item {i+1}", visible=False), item], outputs=None)
+
 
     with gr.Tab("Library"):
         gr.Markdown("# File Management")
