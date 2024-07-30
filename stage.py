@@ -6,7 +6,6 @@ from datetime import datetime
 import json
 from findLLM import find_local_LLM
 
-# Load configuration
 config = configparser.ConfigParser()
 config.read('settings.cfg')
 MAX_ITEMS = int(config['DEFAULT']['max_items'])
@@ -20,22 +19,18 @@ def load_autosaved_data():
         return {}
 def collect_and_save(changed_field, changed_value):
     try:
-        # Try to load existing data
         try:
             with open("autosaved_data.json", "r") as f:
                 data = json.load(f)
         except FileNotFoundError:
             data = {}
 
-        # Update the changed field
         data[changed_field] = changed_value
         data['last_updated'] = datetime.now().isoformat()
 
-        # Write all data back to JSON file
         with open("autosaved_data.json", "w") as f:
             json.dump(data, f, indent=2)
 
-        # Convert to text file
         json_to_text(data)
 
         return f"{changed_field} autosaved successfully"
@@ -86,8 +81,9 @@ def process_first_prompt(zeroth, first, second):
     outputs.append("Items generated")  # Status message
     return outputs
 
-with gr.Blocks() as demo:
-    gr.Markdown(f"## {active_llm}")
+with gr.Blocks(title="cuesubplot") as demo:
+    with gr.Row():
+        gr.Markdown(f"## {active_llm}")
 
     with gr.Tab("Stage"):
         zeroth_cue = gr.Textbox(label="Role (applied to all prompts)", lines=1, value=autosaved_data.get("Role", ""))
@@ -133,8 +129,7 @@ with gr.Blocks() as demo:
             item.blur(fn=collect_and_save, inputs=[gr.Textbox(value=f"List Item {i+1}", visible=False), item], outputs=None)
 
 
-    with gr.Tab("Library"):
-        gr.Markdown("# File Management")
+    with gr.Tab("Files"):
         with gr.Row():
             with gr.Column():
                 save_btn = gr.Button("Save Results")
@@ -144,7 +139,7 @@ with gr.Blocks() as demo:
                 open_btn = gr.Button("Open File")
         with gr.Row():
             clear_btn = gr.Button("Clear Stage")
-        library_status_message = gr.Textbox(label="Library Status", interactive=False)
+        library_status_message = gr.Textbox(label="File Status", interactive=False)
 
         save_btn.click(
             save_results_wrapper,
@@ -161,9 +156,8 @@ with gr.Blocks() as demo:
         clear_btn.click(
             clear_stage,
             inputs=[],
-            outputs=[zeroth_cue, first_cue, second_cue] + [comp for comp in item_components if isinstance(comp, gr.Textbox)] + [library_status_message]
+            outputs=[zeroth_cue, first_cue, second_cue] + [comp for comp in item_components] + [library_status_message]
         )
-
 
 if __name__ == "__main__":
     demo.launch()

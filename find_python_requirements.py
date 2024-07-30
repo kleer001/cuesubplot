@@ -1,8 +1,8 @@
 import os
 import ast
 import sys
+import subprocess
 from collections import defaultdict
-
 
 def get_imports(file_path):
     with open(file_path, 'r') as file:
@@ -19,10 +19,17 @@ def get_imports(file_path):
 
     return imports
 
-
 def is_standard_library(module):
     return module in sys.stdlib_module_names
 
+def get_package_version(package):
+    try:
+        result = subprocess.run(['pip', 'show', package], capture_output=True, text=True, check=True)
+        for line in result.stdout.split('\n'):
+            if line.startswith('Version:'):
+                return line.split(':')[1].strip()
+    except subprocess.CalledProcessError:
+        return None
 
 def main():
     current_dir = os.getcwd()
@@ -50,13 +57,18 @@ def main():
     for package, files in sorted(external_imports.items()):
         print(f"- {package} (found in: {', '.join(files)})")
 
-    # Save to possible_requirements.txt
+    # Save to requirements.txt with versions
     with open('possible_requirements.txt', 'w') as f:
-        for package, files in sorted(external_imports.items()):
-            f.write(f"{package} (found in: {', '.join(files)})\n")
+        for package in sorted(external_imports.keys()):
+            version = get_package_version(package)
+            if version:
+                print(f"Found version for {package}: {version}")
+                f.write(f"{package}=={version}\n")
+            else:
+                print(f"No version found for {package}")
+                f.write(f"{package}\n")
 
-    print(f"\nSaved external packages to possible_requirements.txt")
-
+    print(f"\nSaved external packages with versions to possible_requirements.txt")
 
 if __name__ == "__main__":
     main()

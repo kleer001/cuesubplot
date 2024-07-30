@@ -7,17 +7,17 @@
 # <code>*Craft complex stories, simply, reliably*</code>
 
 # :speech_balloon: What? 
-Cuesubplot is a hardcoded (sadly not generalized yet) network for creating branching results **reliably** from a local LLM.
+Cuesubplot is a hardcoded (not generalized yet :sweat_smile:) network for creating branching results **reliably** from a local LLM.
 
 # :bulb: Why? 
 
-Over a several months I became increasing frustrated with the inability of the current crop of free online LLMs to manage generating very long and complicated multistep outputs, such as a 12-week program to learn a new skill like salesmanship or to generate a critique a famous song, line by line, from multiple angles. 
+Over a several months I became increasing frustrated with the inability of the current crop of free online LLMs to manage generating very long and complicated multistep outputs, such as a 12-week program to learn a new skill like salesmanship or to generate a critique of a folk song, line by line, from multiple angles. 
 
 I used copy and paste to some success, but found that the LLM would get distracted and the quality would nose dive. Not to mention that it felt wrong to manually copy-paste as part of a workflow.
 
-Then (thanks to wise words from Jonathan Mast) I set out to manually program a solution. 
+Then (thanks to wise words from Jonathan Mast) I set out to manually program a solution with the help of an LLM. 
 
-Through [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui) I'd been introduced to the gui package *[Gradio](https://www.gradio.app/)*. And by the silicone grace of Nvidia blessed with multiple free online LLMs that could, with some deft work, generate code. Big up and thanks to the massive big brains over at [ChatGPT](https://chatgpt.com/) , [Perplexity](https://www.perplexity.ai/) , and [Claude](https://claude.ai/) . Kind of ironic that this project excludes them (for the moment).
+Through [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui) I'd been introduced to the gui package *[Gradio](https://www.gradio.app/)*. And by the silicone grace of Nvidia blessed with multiple free online LLMs that could, with some deft work, generate pretty good code. Big up and thanks to the massive big brains over at [ChatGPT](https://chatgpt.com/) , [Perplexity](https://www.perplexity.ai/) , and [Claude](https://claude.ai/) . Kind of ironic that this project excludes them (for the moment).
 
 *Additionally, I wanted to join the local LLM evolution and contribute to the community of programmers and users that loving doing what I loved to do to, generate text and push what these LLMs could do.*
 
@@ -26,17 +26,25 @@ Through [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
 > ## **1** - Set a ***role***
 > ## **2** - Create a ***list***
 > ## **3** - Elaborate (or "***riff***") on the list
+
+# :rocket: Start (automagically)
+
+<code>curl -fsSL https://raw.githubusercontent.com/kleer001/cuesubplot/master/setup.sh | bash</code>
  
 
 # :sparkles: Start (manual) 
-* 1 - Make sure you have git installed.  
-<code> https://github.com/git-guides/install-git </code>
-* 2 - Copy the repo  
-<code>git clone https://github.com/kleer001/cuesubplot ; cd cuesubplot
-</code>
-* 3 - load the dependencies (local venv?) 
-* 4 - Run the program  
+* Make sure you have **git** installed (and **python3**)
+* **Copy** the repo  
+<code>git clone https://github.com/kleer001/cuesubplot ; cd cuesubplot </code>
+* **Create** a local venv
+* <code> python3 -m venv venv </code>
+* **Activate** it
+* <code> source venv/bin/activate </code>
+* **Install** the dependencies  
+<code> pip install -r requirements.txt </code>
+* **Run** the program  
 <code> python3 stage.py</code>
+
 
 ## :package: Currently supported LLMS platforms 
 *in  settings.cfg*  
@@ -67,7 +75,7 @@ But they can be very clever and create an edge case I hadn't anticipated. In tha
 * 5 - Once you're happy with your 3rd cue (your Riffing promptlet) feel free to process the rest of your items.  
 I recommend processing the first one a few times until you're happy, then proceeding to the fallowing ones.    
 
-![Tab 1, The Stage](/images/Stage_02.png "Tab 1, The Stage")
+![Tab 1, The Stage](/images/Stage_01.png "Tab 1, The Stage")
 
 ### :writing_hand: THE LIBRARY 
 
@@ -77,20 +85,21 @@ Here we can Save, Load, and clear the Stage.
 * **Opening**: You'll need to select a file to open first. Drop file or Click to upload. After that you can open it.  
 * **Library Status**: Feedback is important in any creative venture. (though this part is non-standard and will likely atrophy in further versions)
 
-![Tab 2, The Library](/images/Library_02.png "Tab 2, The Library")
+![Tab 2, The Library](/images/Library_01.png "Tab 2, The Library")
 
 ### :brain: THE SETTINGS 
-**Settings for XXX** Will be based on the local LLM the program detects that is currently running.  
+
+*Will be based on the local LLM the program detects that is currently running*
+
+Please see <code> findLLM.py & settings.cfg </code>
+
 If there are more than one running it will pick the first one it finds.   
 * Model: Not all local LLMs let you specify the model through the API. Some require the user to load the model before the api will return a query.  
 * Messy: Off by default. Messy on will display all the of the hidden Process Buttons, List Item text boxes, and Riffing Results. Gradio cannot create them on the fly. So, they're hidden until they're needed.  
 * Maximum number of items: Default of 5. The number of List Items that are created with the interface (hidden by default).  
 * Max Tokens, Temperature, etc... : Settings based on the API call of your specific LLM  
 
-* Update Settings: Will write out your selected settings to a settings.cfg file so that it can be used over on the Stage.   
-* Update Status: Again, feedback is important.   
 
-![Tab 3, The Settings](/images/Settings_02.png "Tab 3, the Settings")
 
 ### :performing_arts: A FULL STAGE 
 

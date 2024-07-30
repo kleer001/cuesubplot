@@ -105,7 +105,7 @@ def open_file(file_path):
     return zeroth_cue, first_cue, second_cue, items_and_results
 
 def create_library_ui():
-    with gr.Tab("Library"):
+    with gr.Tab("Files"):
         gr.Markdown("# File Management")
 
         with gr.Row():
@@ -117,7 +117,7 @@ def create_library_ui():
                 open_input = gr.File(label="File to Open")
                 open_btn = gr.Button("Open File", interactive=False)
 
-        library_status_message = gr.Textbox(label="Library Status", interactive=False)
+        library_status_message = gr.Textbox(label="File Status", interactive=False)
 
         # Enable the Open File button only when a file is selected
         open_input.change(
@@ -173,6 +173,8 @@ def open_file_wrapper(file_obj):
 
     status_message = gr.update(value=f"File opened: {os.path.basename(file_path)}")
     outputs.append(status_message)
+
+
 
     return outputs
 

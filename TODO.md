@@ -9,9 +9,19 @@
 
 [] finish Readme.md
 
+# Wishlist (next version)
+
+[] Make new repository of **UseFullTools** with  
+[] find_python_requirements.py
+
+[] Get rid of Files tab and instead use Emojis for Save, Open, and New:
+
+💾 📂 🗑️
+
+
 # Marketing
 
-[  ] PM directly people on reddit for alpha testers, see positive responses to oobabooga post.
+[  ] PM directly people on reddit, work discord, instagram? for alpha testers, see positive responses to oobabooga post.
 
 [  ] Post to sub reddits when polished and ready for beta:
 
