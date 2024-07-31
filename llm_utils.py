@@ -75,7 +75,7 @@ def query_llm(prompt, active_llm, config=None):
         response = requests.post(full_url, json=payload, headers=headers)
         response.raise_for_status()
         print(f"Response status code: {response.status_code}")
-        print(f"Response content: {response.text}")
+        print(f"Response content text: {response.text}")
         return response.json()
     except requests.RequestException as e:
         print(f"Error querying {active_llm}: {e}")
@@ -110,6 +110,18 @@ def get_llm_response(prompt):
         response = query_llm(prompt, active_llm, config)
         if response:
             content = get_response(response, active_llm, config)
-            return parse_list(content)
+            return parse_list(content) #only if it's a list item!
+        return "Error: Failed to get a response from the LLM"
+    return "Error: No active Local LLM found"
+
+def get_clean_llm_response(prompt):
+    config = load_config()
+    active_llm = find_local_LLM()
+
+    if active_llm:
+        response = query_llm(prompt, active_llm, config)
+        if response:
+            content = get_response(response, active_llm, config)
+            return content #only if it's a NOT list item, aka a Riff!
         return "Error: Failed to get a response from the LLM"
     return "Error: No active Local LLM found"

@@ -1,7 +1,7 @@
 import gradio as gr
 import configparser
 from file_utils import open_file_wrapper, save_results_wrapper
-from llm_utils import get_llm_response
+from llm_utils import get_llm_response, get_clean_llm_response
 from datetime import datetime
 import json
 from findLLM import find_local_LLM
@@ -53,6 +53,11 @@ def process_item(zeroth_cue, item_text, second_prompt, item_index):
     response = get_llm_response(full_prompt)
     return gr.update(visible=True, value=response)
 
+def process_clean_item(zeroth_cue, item_text, second_prompt, item_index):
+    full_prompt = f"{zeroth_cue} {second_prompt} {item_text}"
+    response = get_clean_llm_response(full_prompt)
+    return gr.update(visible=True, value=response)
+
 def clear_stage():
     outputs = [gr.update(value="") for _ in range(3)]  # zeroth_cue, first_cue, second_cue
     for _ in range(MAX_ITEMS):
@@ -95,12 +100,13 @@ with gr.Blocks(title="cuesubplot") as demo:
 
         item_components = []
         for i in range(MAX_ITEMS):
-            item_data = autosaved_data.get(f"List Item {i+1}", "")
-            item_visible = bool(item_data)  # True if item_data is not empty
+            item_data = autosaved_data.get(f"List Item {i + 1}", "")
+            result_data = autosaved_data.get(f"Riffing Result {i + 1}", "")
+            item_visible = bool(item_data) or bool(result_data)  # True if either item_data or result_data is not empty
             with gr.Row(visible=item_visible) as item_row:
                 item = gr.Textbox(label=f"List Item {i + 1}", visible=item_visible, lines=1, value=item_data)
                 process_btn = gr.Button(f"Riff On List Item {i + 1}", visible=item_visible)
-            result = gr.Textbox(label=f"Riffing Result {i + 1}", visible=item_visible, lines=1)
+            result = gr.Textbox(label=f"Riffing Result {i + 1}", visible=item_visible, lines=1, value=result_data)
             item_components.extend([item_row, item, process_btn, result])
 
 
@@ -113,21 +119,28 @@ with gr.Blocks(title="cuesubplot") as demo:
         for i in range(MAX_ITEMS):
             process_btn = item_components[i * 4 + 2]
             process_btn.click(
-                process_item,
+                process_clean_item,
                 inputs=[zeroth_cue, item_components[i * 4 + 1], second_cue, gr.State(i)],
                 outputs=[item_components[i * 4 + 3]]
             )
 
-    # Autosave functionality for main textboxes
+    # Autosave
         for textbox, name in [(zeroth_cue, "Role"), (first_cue, "List generation"), (second_cue, "Riff on the list")]:
             textbox.change(fn=collect_and_save, inputs=[gr.Textbox(value=name, visible=False), textbox], outputs=None)
             textbox.blur(fn=collect_and_save, inputs=[gr.Textbox(value=name, visible=False), textbox], outputs=None)
 
-        # Autosave functionality for list items
-        for i, item in enumerate(item_components[1::4]):  # Every 4th element starting from index 1 is an item textbox
-            item.change(fn=collect_and_save, inputs=[gr.Textbox(value=f"List Item {i+1}", visible=False), item], outputs=None)
-            item.blur(fn=collect_and_save, inputs=[gr.Textbox(value=f"List Item {i+1}", visible=False), item], outputs=None)
-
+        for i in range(0, len(item_components), 4):  # Iterate through components in groups of 4
+            item = item_components[i + 1]  # List Item textbox
+            result = item_components[i + 3]  # Riffing Result textbox
+            item.change(fn=collect_and_save, inputs=[gr.Textbox(value=f"List Item {i // 4 + 1}", visible=False), item],
+                        outputs=None)
+            item.blur(fn=collect_and_save, inputs=[gr.Textbox(value=f"List Item {i // 4 + 1}", visible=False), item],
+                      outputs=None)
+            result.change(fn=collect_and_save,
+                          inputs=[gr.Textbox(value=f"Riffing Result {i // 4 + 1}", visible=False), result],
+                          outputs=None)
+            result.blur(fn=collect_and_save,
+                        inputs=[gr.Textbox(value=f"Riffing Result {i // 4 + 1}", visible=False), result], outputs=None)
 
     with gr.Tab("Files"):
         with gr.Row():

@@ -62,7 +62,7 @@ Through [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
 * Support for Chat-GPT, Perplexity, Claude, and other paid platforms is imminent, though not guaranteed. 
 
 ## :walking: GUI WALK THROUGH 
-### :eyes: THE STAGE 
+### :eyes: STAGE 
 * 1 - At ***Role*** enter a role you want the LLM to take, a perspective, personality.   
 This will be added as a prefix mini-prompt (forthwith to be known as a **cue**) to the rest of the prompts you'll create.   
 * 2 - At ***List generation*** enter the list you would like to generate. For best results use the phrasing something like
@@ -77,7 +77,7 @@ I recommend processing the first one a few times until you're happy, then procee
 
 ![Tab 1, The Stage](/images/Stage_01.png "Tab 1, The Stage")
 
-### :writing_hand: THE LIBRARY 
+### :writing_hand: FILES 
 
 Here we can Save, Load, and clear the Stage.   
 * **Save Results**: The files are named automagically based on your prompts, the date, and time.  
@@ -103,7 +103,7 @@ If there are more than one running it will pick the first one it finds.
 
 ### :performing_arts: A FULL STAGE 
 
-![Tab 1, The Stage](/images/Stage_01.png "Tab 1, The Stage")
+![Tab 1, The Stage](/images/Stage_03.gif "Tab 1, The Stage")
 
 ### :chart_with_upwards_trend: THE FLOW CHART
 

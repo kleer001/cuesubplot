@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="fixing image">
-      <change afterPath="$PROJECT_DIR$/backup_utils.py" afterDir="false" />
+    <list default="true" id="61bd8508-490d-4bc4-af98-a05cafe8740b" name="Changes" comment="image changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/settings.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autosave_object.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup_utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/llm_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/llm_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stage.py" beforeDir="false" afterPath="$PROJECT_DIR$/stage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +33,7 @@
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -78,7 +79,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "/home/menser/Dropbox/ai/code/cuesubplot",
-    "settings.editor.selected.configurable": "preferences.editor"
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -271,71 +272,39 @@
       <option name="project" value="LOCAL" />
       <updated>1721670292235</updated>
     </task>
-    <task id="LOCAL-00022" summary="cleaned up gui on file open with dynamic box height calculating lines">
+    <task id="LOCAL-00022" summary="Wow, got autosave and autosave_reload working in a good enough way. Sheesh, that took a while.">
       <option name="closed" value="true" />
-      <created>1721675003770</created>
+      <created>1722273999202</created>
       <option name="number" value="00022" />
       <option name="presentableId" value="LOCAL-00022" />
       <option name="project" value="LOCAL" />
-      <updated>1721675003770</updated>
+      <updated>1722273999202</updated>
     </task>
-    <task id="LOCAL-00023" summary="Completely refactored LLM info to stay in the settings.cfg file and nowhere else, yay! Now back to tests and maybe we'll release the alpha some day soon. Woot?">
+    <task id="LOCAL-00023" summary="Wow, got autosave and autosave_reload working in a good enough way. Sheesh, that took a while. Still needs some spit and polish">
       <option name="closed" value="true" />
-      <created>1721688715573</created>
+      <created>1722274908314</created>
       <option name="number" value="00023" />
       <option name="presentableId" value="LOCAL-00023" />
       <option name="project" value="LOCAL" />
-      <updated>1721688715573</updated>
+      <updated>1722274908314</updated>
     </task>
-    <task id="LOCAL-00024" summary="improved flow chart readability">
+    <task id="LOCAL-00024" summary="lots of changes getting ready to release, code is good, now for readme and cleanup">
       <option name="closed" value="true" />
-      <created>1721761496254</created>
+      <created>1722380786591</created>
       <option name="number" value="00024" />
       <option name="presentableId" value="LOCAL-00024" />
       <option name="project" value="LOCAL" />
-      <updated>1721761496254</updated>
+      <updated>1722380786591</updated>
     </task>
-    <task id="LOCAL-00025" summary="added more information and friendliness to Readme.md and updated TODO.md">
+    <task id="LOCAL-00025" summary="image changes">
       <option name="closed" value="true" />
-      <created>1721773428229</created>
+      <created>1722442331319</created>
       <option name="number" value="00025" />
       <option name="presentableId" value="LOCAL-00025" />
       <option name="project" value="LOCAL" />
-      <updated>1721773428229</updated>
+      <updated>1722442331319</updated>
     </task>
-    <task id="LOCAL-00026" summary="little readme addition">
-      <option name="closed" value="true" />
-      <created>1721773792911</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1721773792911</updated>
-    </task>
-    <task id="LOCAL-00027" summary="more readme buff and polish, not that the rest of the code is done">
-      <option name="closed" value="true" />
-      <created>1721841010872</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1721841010872</updated>
-    </task>
-    <task id="LOCAL-00028" summary="more readme buff and polish, should be done with this for the day, enough creativity no doubt">
-      <option name="closed" value="true" />
-      <created>1721854737160</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1721854737160</updated>
-    </task>
-    <task id="LOCAL-00029" summary="fixing image">
-      <option name="closed" value="true" />
-      <created>1721855034485</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1721855034486</updated>
-    </task>
-    <option name="localTasksCounter" value="30" />
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -353,6 +322,10 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="even more options and settings and save and open is broken" />
+    <MESSAGE value="figuring out github hope i didn't break anything" />
+    <MESSAGE value="cleaned up file save" />
     <MESSAGE value="squashed save bug and creative file name (probably too expensive)" />
     <MESSAGE value="lovely save name and stop word data file from https://countwordsfree.com/stopwords" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
@@ -370,14 +343,26 @@
     <MESSAGE value="more images" />
     <MESSAGE value="move advanced write over" />
     <MESSAGE value="Worked on, finished, and put flow chart into the readme. Hopefully that's enough explanation of the process to get people going. It still needs a story though." />
-    <MESSAGE value="cleaned up gui on file open with dynamic box height calculating lines" />
-    <MESSAGE value="Completely refactored LLM info to stay in the settings.cfg file and nowhere else, yay! Now back to tests and maybe we'll release the alpha some day soon. Woot?" />
-    <MESSAGE value="improved flow chart readability" />
-    <MESSAGE value="added more information and friendliness to Readme.md and updated TODO.md" />
-    <MESSAGE value="little readme addition" />
-    <MESSAGE value="more readme buff and polish, not that the rest of the code is done" />
-    <MESSAGE value="more readme buff and polish, should be done with this for the day, enough creativity no doubt" />
-    <MESSAGE value="fixing image" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing image" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;settings.cfg&#10;#&#9;stage.py" />
+    <MESSAGE value="Wow, got autosave and autosave_reload working in a good enough way. Sheesh, that took a while." />
+    <MESSAGE value="Wow, got autosave and autosave_reload working in a good enough way. Sheesh, that took a while. Still needs some spit and polish" />
+    <MESSAGE value="lots of changes getting ready to release, code is good, now for readme and cleanup" />
+    <MESSAGE value="image changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="image changes" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/llm_utils.py</url>
+          <line>91</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/settings.py</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
