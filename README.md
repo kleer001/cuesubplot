@@ -115,6 +115,9 @@ This, of course, leaves out important parts, but aims at addressing the importan
 Like, there's a lot of work that goes into separating the results of the List cue results into separate list items that can be addressed individually.   
 And there's nothing about the LLM settings or the APIs.  
 
+![Program Flow, more or less](/images/flowChart_01.png "Flowchart")
+
+
 ### :brain: THE SETTINGS 
 
 *Will be based on the local LLM the program detects that is currently running*
@@ -128,8 +131,6 @@ If there are more than one running it will pick the first one it finds.
 * Max Tokens, Temperature, etc... : Settings based on the API call of your specific LLM  
 
 
-
-![Program Flow, more or less](/images/flowChart_01.png "Flowchart")
 
 ## :bug: COMMON PROBLEMS: 
 
