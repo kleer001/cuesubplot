@@ -79,16 +79,17 @@ Cuesubplot is a hard-coded (not generalized __yet__ :sweat_smile:) network for c
 ## :walking: GUI WALK THROUGH 
 ### :eyes: STAGE 
 * 1 - At ***Role*** enter a role you want the LLM to take, a perspective, personality.   
-This will be added as a prefix mini-prompt (forthwith to be known as a **cue**) to the rest of the prompts you'll create.   
+This will be added as a prefix promptlet to the rest of the prompts you'll create.   
 * 2 - At ***List generation*** enter the list you would like to generate. For best results use the phrasing something like
 **"give me an ordered list of ..."**  
 
 *I've done my best to be able to handle many types of list formats than an LLM can generate. 
 But they can be very clever and create an edge case I hadn't anticipated. In that case feel free to hit submit again and wish for the best.*  
 * 3 - Hit the ***Submit*** button to generate your list.   
-* 4 - At ***Riff on the list*** enter a prompt to process items you've created. I purposefully didn't create a 'Riff on all the items' because LLMs can be a little unpredictable and prompt creation is an art that requires iteration, sometimes.    
-* 5 - Once you're happy with your 3rd cue (your Riffing promptlet) feel free to process the rest of your items.  
-I recommend processing the first one a few times until you're happy, then proceeding to the fallowing ones.    
+* 4 - At ***Riff on the list*** enter a prompt to process items you've created.
+* 5 - Once you're happy with your Riffing promptlet feel free to process the rest of your items.  
+
+
 
 ![Tab 1, The Stage](/images/Stage_01.png "Tab 1, The Stage")
 
@@ -96,11 +97,23 @@ I recommend processing the first one a few times until you're happy, then procee
 
 Here we can Save, Load, and clear the Stage.   
 * **Save Results**: The files are named automagically based on your prompts, the date, and time.  
+*  **Saved File**: The automatically generated file name once saved.  
 * **File to Open**: You'll need to select a file to open first. Drop file or Click to upload.  
-* **Opening**: You'll need to select a file to open first. Drop file or Click to upload. After that you can open it.  
-* **Library Status**: Feedback is important in any creative venture. (though this part is non-standard and will likely atrophy in further versions)
+* **Open File**: You'll need to select a file to open first. Drop file or Click to upload. After that you can open it.  
+* **File Status**: Feedback is important in any creative venture.
 
-![Tab 2, The Library](/images/Library_01.png "Tab 2, The Library")
+![Tab 2, Files](/images/Library_01.png "Tab 2, Files")
+
+
+### :performing_arts: A FULL STAGE 
+
+![Tab 1, The Stage](/images/FullStage_01.png "Tab 1, The Stage")
+
+### :chart_with_upwards_trend: THE FLOW CHART
+
+This, of course, leaves out important parts, but aims at addressing the important creative process flow.  
+Like, there's a lot of work that goes into separating the results of the List cue results into separate list items that can be addressed individually.   
+And there's nothing about the LLM settings or the APIs.  
 
 ### :brain: THE SETTINGS 
 
@@ -115,16 +128,6 @@ If there are more than one running it will pick the first one it finds.
 * Max Tokens, Temperature, etc... : Settings based on the API call of your specific LLM  
 
 
-
-### :performing_arts: A FULL STAGE 
-
-![Tab 1, The Stage](/images/FullStage_01.png "Tab 1, The Stage")
-
-### :chart_with_upwards_trend: THE FLOW CHART
-
-This, of course, leaves out important parts, but aims at addressing the important creative process flow.  
-Like, there's a lot of work that goes into separating the results of the List cue results into separate list items that can be addressed individually.   
-And there's nothing about the LLM settings or the APIs.  
 
 ![Program Flow, more or less](/images/flowChart_01.png "Flowchart")
 
