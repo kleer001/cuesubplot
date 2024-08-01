@@ -5,16 +5,15 @@
 
 # Code
 
-[] Create setup script
+[] Create and test setup script
 
-[] finish Readme.md
+[] finish Readme.md for release
 
 # Wishlist (next version)
 
-[] Make new repository of **UseFullTools** with  
-[] find_python_requirements.py
+[] Make new repository of **UseFullTools** with scripts in utilities/
 
-[] Get rid of Files tab and instead use Emojis for Save, Open, and New:
+[] Get rid of Files tab and make buttons at tope, using Emojis for Save, Open, and New:
 
 💾 📂 🗑️
 
@@ -95,3 +94,20 @@ I like food, and here are some good ones
 3. [X] add custom LLM API location and POST/GET template?! Put it in settings.cfg
 
 [X] make adaptive llm finder, POST/GET template, and API key handler 
+
+Screen Recording to Anim gif pipeline: 
+
+(basic pipeline, not in cement)
+
+1) record with SimnpleScreenRecorder
+2) create a pallet with ffmpeg
+
+ffmpeg -i video.mkv -vf "fps=8,scale=320:-1:flags=lanczos,palettegen=max_colors=32" -y palette_32.png
+
+3) create a gif with ffmpeg"
+
+ffmpeg -i video.mkv -i palette4.png -filter_complex "fps=4,paletteuse" -y output_video.gif
+
+4) optimize with gifsicle
+
+gifsicle -O3 output_video.gif -o output_video_1.gif

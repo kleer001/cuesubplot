@@ -2,37 +2,52 @@
     <img src="/images/masks_base_banner_01.png" alt="Logo">
 </div>
 
-# **cuesubplot:** *A web interface for procedurally branching results from three promptlets*
+# **cuesubplot:** *A web interface for procedurally branching results from three promptlets ([Role](https://platform.openai.com/docs/guides/prompt-engineering/tactic-ask-the-model-to-adopt-a-persona), [List](https://en.wikipedia.org/wiki/Franz_Liszt), & [Riff](https://www.collinsdictionary.com/dictionary/english/riff)).*
 
-# <code>*Craft complex stories, simply, reliably*</code>
+# <code>*Craft complex chat responses, simply and reliably*</code>
 
-# :speech_balloon: What? 
-Cuesubplot is a hardcoded (not generalized yet :sweat_smile:) network for creating branching results **reliably** from a local LLM.
+## :speech_balloon: What? 
+Cuesubplot is a hard-coded (not generalized __yet__ :sweat_smile:) network for creating lists and building on them in a way that is stable and  **reliable**. All from the comfort of your favorite local LLM API.
 
-# :bulb: Why? 
 
-Over a several months I became increasing frustrated with the inability of the current crop of free online LLMs to manage generating very long and complicated multistep outputs, such as a 12-week program to learn a new skill like salesmanship or to generate a critique of a folk song, line by line, from multiple angles. 
+# :bulb: Why?
 
-I used copy and paste to some success, but found that the LLM would get distracted and the quality would nose dive. Not to mention that it felt wrong to manually copy-paste as part of a workflow.
+<details>
+  <summary>Enhance LLM Capabilities & Streamline Workflow</summary>
 
-Then (thanks to wise words from Jonathan Mast) I set out to manually program a solution with the help of an LLM. 
+- Develop a solution that enables (local) LLMs to generate long and complex multistep outputs effectively, such as detailed learning programs or comprehensive critiques.
 
-Through [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui) I'd been introduced to the gui package *[Gradio](https://www.gradio.app/)*. And by the silicone grace of Nvidia blessed with multiple free online LLMs that could, with some deft work, generate pretty good code. Big up and thanks to the massive big brains over at [ChatGPT](https://chatgpt.com/) , [Perplexity](https://www.perplexity.ai/) , and [Claude](https://claude.ai/) . Kind of ironic that this project excludes them (for the moment).
+- Eliminate the need for manual copy-pasting in workflows to improve efficiency and maintain the quality of generated content while trying new things.
 
-*Additionally, I wanted to join the local LLM evolution and contribute to the community of programmers and users that loving doing what I loved to do to, generate text and push what these LLMs could do.*
+</details>
 
-# :zap: How 
-> [!TIP]
-> ## **1** - Set a ***role***
-> ## **2** - Create a ***list***
-> ## **3** - Elaborate (or "***riff***") on the list
+<details>
+  <summary>Create a Custom Solution</summary>
 
-# :rocket: Start (automagically)
+- Leverage insights from experts like Jonathan Mast to design a tailored programming solution that integrates the strengths of LLMs and utilizes innovative tools like [Gradio](https://www.gradio.app/) and inspiration from [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui).
+
+</details>
+
+<details>
+  <summary>Contribute to the Community</summary>
+
+- Actively participate in the local LLM evolution among programmers and users who share a passion for generating text and exploring the capabilities of LLMs and enhancing the ease of the chat workflow.
+
+</details>
+
+
+
+> ## :zap: How? 
+> ## **1** - Set a ***[role](https://platform.openai.com/docs/guides/prompt-engineering/tactic-ask-the-model-to-adopt-a-persona)***
+> ## **2** - Create a ***[list](https://mathworld.wolfram.com/LissajousCurve.html)***
+> ## **3** - [***Riff***](https://www.collinsdictionary.com/dictionary/english/riff) on the list
+
+## :rocket: Start (automagically)
 
 <code>curl -fsSL https://raw.githubusercontent.com/kleer001/cuesubplot/master/setup.sh | bash</code>
  
 
-# :sparkles: Start (manual) 
+## :sparkles: Start (manual) 
 * Make sure you have **git** installed (and **python3**)
 * **Copy** the repo  
 <code>git clone https://github.com/kleer001/cuesubplot ; cd cuesubplot </code>
@@ -58,7 +73,7 @@ Through [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
 | [llama.cpp](https://github.com/ggerganov/llama.cpp)    | localhost:8080  | /completion          |
 | [oobabooga](https://github.com/oobabooga/text-generation-webui)    | localhost:5000  | /v1/chat/completions |
 
-* Please suggest more free local LLMs if you like. And feel free to change your local settings.cfg to fit your own purposes. The structure should be self evident from the examples in it.  
+* Please suggest more free local LLMs if you like. And feel free to change your local settings.cfg to fit your own purposes. The structure should be self-evident from the examples in it.  
 * Support for Chat-GPT, Perplexity, Claude, and other paid platforms is imminent, though not guaranteed. 
 
 ## :walking: GUI WALK THROUGH 
@@ -103,7 +118,7 @@ If there are more than one running it will pick the first one it finds.
 
 ### :performing_arts: A FULL STAGE 
 
-![Tab 1, The Stage](/images/Stage_03.gif "Tab 1, The Stage")
+![Tab 1, The Stage](/images/FullStage_01.png "Tab 1, The Stage")
 
 ### :chart_with_upwards_trend: THE FLOW CHART
 
@@ -147,7 +162,12 @@ https://countwordsfree.com/stopwords
 My family, friends, and other loved ones  
  *the ones still extant and those sadly extinct* :heart: 
 
-### Software (previously unmentioned)
+## 🤝 Acknowledgments
 
+I would like to express my gratitude to the following platforms and software for their inspiration and contributions:
+
+- [ChatGPT](https://chatgpt.com/)
+- [Perplexity](https://www.perplexity.ai/)
+- [Claude](https://claude.ai/)
 - [Houdini](https://www.sidefx.com/products/houdini/)
 - [Nuke](https://www.foundry.com/products/nuke)
