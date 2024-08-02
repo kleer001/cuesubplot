@@ -51,7 +51,7 @@ Cuesubplot is a browser based, hard-coded (not generalized __yet__ :sweat_smile:
 
 ## :rocket: Start (automagically)
 
-<code>curl -fsSL https://raw.githubusercontent.com/kleer001/cuesubplot/master/setup.sh | bash</code>
+<code>curl -fsSL https://raw.githubusercontent.com/kleer001/cuesubplot/master/install.sh | bash</code>
  
 
 ## :sparkles: Start (manual) 

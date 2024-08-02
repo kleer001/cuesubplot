@@ -89,3 +89,4 @@ main() {
 
 # Run the main function
 main
+cd cuesubplot
