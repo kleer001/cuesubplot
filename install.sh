@@ -82,8 +82,7 @@ main() {
     clone_repo
     setup_venv
     create_runme_script
-    cd cuesubplot
-    log "Installation complete. You can now run ./runme.sh to start the program."
+    log "Installation complete. You can now run src/runme.sh to start the program."
     trap - EXIT  # Remove the trap if installation is successful
 }
 
