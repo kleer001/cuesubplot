@@ -1,8 +1,10 @@
 import configparser
-from concurrent.futures import ThreadPoolExecutor, as_completed
+
 import requests
+
 from findLLM import find_local_LLM
 from text_utils import parse_list
+
 
 def load_config(file_path='settings.cfg'):
     config = configparser.ConfigParser()
@@ -23,6 +25,7 @@ def check_llm(name, url, endpoint):
     except requests.RequestException as e:
         print(f"Error checking {name}: {e}")
     return None
+
 
 def build_payload(prompt, settings):
     payload = {}
@@ -85,6 +88,8 @@ def query_llm(prompt, active_llm, config=None):
         else:
             print("No response received")
         return None
+
+
 def extract_response(response, response_key):
     keys = response_key.split('.')
     for key in keys:
@@ -110,9 +115,10 @@ def get_llm_response(prompt):
         response = query_llm(prompt, active_llm, config)
         if response:
             content = get_response(response, active_llm, config)
-            return parse_list(content) #only if it's a list item!
+            return parse_list(content)  # only if it's a list item!
         return "Error: Failed to get a response from the LLM"
     return "Error: No active Local LLM found"
+
 
 def get_clean_llm_response(prompt):
     config = load_config()
@@ -122,6 +128,6 @@ def get_clean_llm_response(prompt):
         response = query_llm(prompt, active_llm, config)
         if response:
             content = get_response(response, active_llm, config)
-            return content #only if it's a NOT list item, aka a Riff!
+            return content  # only if it's a NOT list item, aka a Riff!
         return "Error: Failed to get a response from the LLM"
     return "Error: No active Local LLM found"

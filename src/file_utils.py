@@ -1,11 +1,13 @@
-import os
-from datetime import datetime
-from word_utils import extract_key_words
-import gradio as gr
 import configparser
 import math
+import os
+from datetime import datetime
 
-#The only setting we need on creation
+import gradio as gr
+
+from word_utils import extract_key_words
+
+# The only setting we need on creation
 config = configparser.ConfigParser()
 config.read('settings.cfg')
 maxvalue = config['DEFAULT']['max_items']
@@ -58,8 +60,6 @@ def save_results(zeroth_cue, first_cue, second_cue, *components):
     return full_path
 
 
-
-
 def open_file(file_path):
     if not os.path.exists(file_path):
         return "", "", "", []
@@ -104,6 +104,7 @@ def open_file(file_path):
 
     return zeroth_cue, first_cue, second_cue, items_and_results
 
+
 def create_library_ui():
     with gr.Tab("Files"):
         gr.Markdown("# File Management")
@@ -139,6 +140,7 @@ def calculate_lines(text, width=60):
     total_lines = sum(math.ceil(len(line) / width) for line in lines)
     return max(1, total_lines)
 
+
 def open_file_wrapper(file_obj):
     if file_obj is None:
         return [gr.update()] * (3 + MAX_ITEMS * 4) + [
@@ -173,8 +175,6 @@ def open_file_wrapper(file_obj):
 
     status_message = gr.update(value=f"File opened: {os.path.basename(file_path)}")
     outputs.append(status_message)
-
-
 
     return outputs
 

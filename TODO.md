@@ -2,8 +2,10 @@
 
 # Meta 
 
+[] Get codacity badge (login, upload, etc)  
+https://docs.codacy.com/getting-started/codacy-quickstart/#signing-up
 
-# Code
+# Code1
 
 [] Create and test setup script
 

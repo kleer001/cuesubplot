@@ -1,7 +1,7 @@
-import re
 import configparser
+import re
 
-#The only setting we need on creation
+# settings we need on creation
 config = configparser.ConfigParser()
 config.read('settings.cfg')
 maxvalue = config['DEFAULT']['max_items']

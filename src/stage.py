@@ -1,16 +1,19 @@
-import gradio as gr
-import configparser
-from file_utils import open_file_wrapper, save_results_wrapper
-from llm_utils import get_llm_response, get_clean_llm_response
-from datetime import datetime
-import json
-from findLLM import find_local_LLM
 import asyncio
+import configparser
+import json
+from datetime import datetime
+
+import gradio as gr
+
+from file_utils import open_file_wrapper, save_results_wrapper
+from findLLM import find_local_LLM
+from llm_utils import get_llm_response, get_clean_llm_response
 
 config = configparser.ConfigParser()
 config.read('settings.cfg')
 MAX_ITEMS = int(config['DEFAULT']['max_items'])
 active_llm = find_local_LLM()
+
 
 def load_autosaved_data():
     try:
@@ -18,6 +21,8 @@ def load_autosaved_data():
             return json.load(f)
     except FileNotFoundError:
         return {}
+
+
 def collect_and_save(changed_field, changed_value):
     try:
         try:
@@ -39,6 +44,7 @@ def collect_and_save(changed_field, changed_value):
         print(f"Error saving data: {e}")
         return f"An error occurred while saving {changed_field}"
 
+
 def json_to_text(data):
     with open("../autosaved_data.txt", "w") as f:
         for key, value in data.items():
@@ -46,18 +52,22 @@ def json_to_text(data):
                 f.write(f"{key}:\n{value}\n\n")
         f.write(f"Last Updated: {data.get('last_updated', 'Unknown')}")
 
+
 # Load autosaved data at the start
 autosaved_data = load_autosaved_data()
+
 
 def process_item(zeroth_cue, item_text, second_prompt, item_index):
     full_prompt = f"{zeroth_cue} {second_prompt} {item_text}"
     response = get_llm_response(full_prompt)
     return gr.update(visible=True, value=response)
 
+
 def process_clean_item(zeroth_cue, item_text, second_prompt, item_index):
     full_prompt = f"{zeroth_cue} {second_prompt} {item_text}"
     response = get_clean_llm_response(full_prompt)
     return gr.update(visible=True, value=response)
+
 
 def clear_stage():
     outputs = [gr.update(value="") for _ in range(3)]  # zeroth_cue, first_cue, second_cue
@@ -69,6 +79,7 @@ def clear_stage():
             gr.update(value="", visible=False)  # Result text
         ])
     return outputs + [gr.update(value="Stage cleared")]  # Status message
+
 
 def process_first_prompt(zeroth, first, second):
     items = get_llm_response(f"{zeroth} {first}").split('\n')
@@ -127,8 +138,10 @@ with gr.Blocks(title="cuesubplot") as demo:
 
     with gr.Tab("Stage"):
         zeroth_cue = gr.Textbox(label="Role (applied to all prompts)", lines=1, value=autosaved_data.get("Role", ""))
-        first_cue = gr.Textbox(label="List generation (ask for a numbered list)", lines=1, value=autosaved_data.get("List generation", ""))
-        second_cue = gr.Textbox(label="Riff on the list (is applied before the list item)", lines=1, value=autosaved_data.get("Riff on the list", ""))
+        first_cue = gr.Textbox(label="List generation (ask for a numbered list)", lines=1,
+                               value=autosaved_data.get("List generation", ""))
+        second_cue = gr.Textbox(label="Riff on the list (is applied before the list item)", lines=1,
+                                value=autosaved_data.get("Riff on the list", ""))
         submit_btn = gr.Button("Submit Request for List")
 
         status_message = gr.Textbox(label="Status", interactive=False)
@@ -175,7 +188,7 @@ with gr.Blocks(title="cuesubplot") as demo:
                 outputs=[item_components[i * 4 + 3]]
             )
 
-    # Autosave
+        # Autosave
         for textbox, name in [(zeroth_cue, "Role"), (first_cue, "List generation"), (second_cue, "Riff on the list")]:
             textbox.change(fn=collect_and_save, inputs=[gr.Textbox(value=name, visible=False), textbox], outputs=None)
             textbox.blur(fn=collect_and_save, inputs=[gr.Textbox(value=name, visible=False), textbox], outputs=None)
@@ -207,7 +220,8 @@ with gr.Blocks(title="cuesubplot") as demo:
 
         save_btn.click(
             save_results_wrapper,
-            inputs=[zeroth_cue, first_cue, second_cue] + [comp for comp in item_components if isinstance(comp, gr.Textbox)],
+            inputs=[zeroth_cue, first_cue, second_cue] + [comp for comp in item_components if
+                                                          isinstance(comp, gr.Textbox)],
             outputs=[save_output, library_status_message]
         )
 

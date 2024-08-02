@@ -1,6 +1,7 @@
 import configparser
-import requests
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
+import requests
 
 
 def load_config(file_path='settings.cfg'):

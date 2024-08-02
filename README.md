@@ -2,7 +2,16 @@
     <img src="/images/masks_base_banner_01.png" alt="Logo">
 </div>
 
-# ***cuesubplot:*** **Craft complex chat responses, simply and reliably!**
+<center>
+
+![Python 3.12.3](https://img.shields.io/badge/python-3.12.3-blue.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) 
+![Last Commit](https://img.shields.io/github/last-commit/kleer001/cuesubplot) 
+![GitHub Stars](https://img.shields.io/github/stars/kleer001/cuesubplot?style=social)
+
+</center>
+
+# ***cuesubplot:*** **Procedurally craft chat responses, simply and reliably!**
 
 ## :speech_balloon: What? 
 Cuesubplot is a browser based, hard-coded (not generalized __yet__ :sweat_smile:) network for creating lists and building on them in a way that is stable and  **reliable**. All from the comfort of your favorite local LLM API.
@@ -56,7 +65,7 @@ Cuesubplot is a browser based, hard-coded (not generalized __yet__ :sweat_smile:
 * **Install** the dependencies  
 <code> pip install -r requirements.txt </code>
 * **Run** the program  
-<code> python3 stage.py</code>
+<code> python3 src/stage.py</code>
 
 
 ## :package: Currently supported LLMS platforms 
