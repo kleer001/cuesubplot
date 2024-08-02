@@ -14,14 +14,14 @@ active_llm = find_local_LLM()
 
 def load_autosaved_data():
     try:
-        with open("autosaved_data.json", "r") as f:
+        with open("../autosaved_data.json", "r") as f:
             return json.load(f)
     except FileNotFoundError:
         return {}
 def collect_and_save(changed_field, changed_value):
     try:
         try:
-            with open("autosaved_data.json", "r") as f:
+            with open("../autosaved_data.json", "r") as f:
                 data = json.load(f)
         except FileNotFoundError:
             data = {}
@@ -29,7 +29,7 @@ def collect_and_save(changed_field, changed_value):
         data[changed_field] = changed_value
         data['last_updated'] = datetime.now().isoformat()
 
-        with open("autosaved_data.json", "w") as f:
+        with open("../autosaved_data.json", "w") as f:
             json.dump(data, f, indent=2)
 
         json_to_text(data)
@@ -40,7 +40,7 @@ def collect_and_save(changed_field, changed_value):
         return f"An error occurred while saving {changed_field}"
 
 def json_to_text(data):
-    with open("autosaved_data.txt", "w") as f:
+    with open("../autosaved_data.txt", "w") as f:
         for key, value in data.items():
             if key != 'last_updated':
                 f.write(f"{key}:\n{value}\n\n")

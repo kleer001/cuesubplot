@@ -1,7 +1,7 @@
 import string
 
 def load_stop_words():
-    file_path = 'stop_words.data'
+    file_path = '../stop_words.data'
     with open(file_path, 'r') as f:
         return set(line.strip() for line in f)
 

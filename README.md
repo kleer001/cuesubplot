@@ -2,12 +2,10 @@
     <img src="/images/masks_base_banner_01.png" alt="Logo">
 </div>
 
-# **cuesubplot:** *A web interface for procedurally branching results from three promptlets ([Role](https://platform.openai.com/docs/guides/prompt-engineering/tactic-ask-the-model-to-adopt-a-persona), [List](https://en.wikipedia.org/wiki/Franz_Liszt), & [Riff](https://www.collinsdictionary.com/dictionary/english/riff)).*
-
-# <code>*Craft complex chat responses, simply and reliably*</code>
+# ***cuesubplot:*** **Craft complex chat responses, simply and reliably!**
 
 ## :speech_balloon: What? 
-Cuesubplot is a hard-coded (not generalized __yet__ :sweat_smile:) network for creating lists and building on them in a way that is stable and  **reliable**. All from the comfort of your favorite local LLM API.
+Cuesubplot is a browser based, hard-coded (not generalized __yet__ :sweat_smile:) network for creating lists and building on them in a way that is stable and  **reliable**. All from the comfort of your favorite local LLM API.
 
 
 # :bulb: Why?
@@ -38,8 +36,8 @@ Cuesubplot is a hard-coded (not generalized __yet__ :sweat_smile:) network for c
 
 
 > ## :zap: How? 
-> ## **1** - Set a ***[role](https://platform.openai.com/docs/guides/prompt-engineering/tactic-ask-the-model-to-adopt-a-persona)***
-> ## **2** - Create a ***[list](https://mathworld.wolfram.com/LissajousCurve.html)***
+> ## **1** - Set a ***[Role](https://platform.openai.com/docs/guides/prompt-engineering/tactic-ask-the-model-to-adopt-a-persona)***
+> ## **2** - Create a ***[List](https://mathworld.wolfram.com/LissajousCurve.html)***
 > ## **3** - [***Riff***](https://www.collinsdictionary.com/dictionary/english/riff) on the list
 
 ## :rocket: Start (automagically)

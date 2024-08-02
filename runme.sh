@@ -4,7 +4,7 @@
 source venv/bin/activate
 
 # Run the Python program
-python stage.py
+python src/stage.py
 
 # Deactivate the virtual environment when done
 deactivate
