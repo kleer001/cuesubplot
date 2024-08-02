@@ -152,12 +152,7 @@ If you run 'python3 findLLM' and it can't find anything then we need to turn on 
 Please make sure that you have loaded up a model file that we can send a request to.   
 
 **Q:** Anything else?  
-**A:** We're still in early Alpha release, so, it's probably a bug and should be squashed. Please submit an issue, and we'll put it in the pile to be processed.   
-
-## :wrench: CREDITS: 
-
-stopwords.data file from: 
-https://countwordsfree.com/stopwords
+**A:** We're still in early Alpha release, so, it's probably a bug and should be squashed. Please submit an issue, and we'll put it in the pile to be processed.
 
 ## :art: Inspirations 
 
