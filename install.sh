@@ -66,9 +66,7 @@ create_runme_script() {
     log "Creating runme.sh script..."
     cat > runme.sh << EOL
 #!/bin/bash
-source venv/bin/activate
-python src/stage.py
-deactivate
+source venv/bin/activate ; cd src ; python3 stage.py ; deactivate
 EOL
     chmod +x runme.sh
 }
@@ -82,7 +80,7 @@ main() {
     clone_repo
     setup_venv
     create_runme_script
-    log "Installation complete. You can now run src/runme.sh to start the program."
+    log "Installation complete. You can now\n1 - run ./runme.sh to start the program.\n2 - Goto http://127.0.0.1:7860/ in your favorite browser \n3 - And CTR-C to exit."
     trap - EXIT  # Remove the trap if installation is successful
 }
 
