@@ -80,7 +80,12 @@ main() {
     clone_repo
     setup_venv
     create_runme_script
-    log "Installation complete. You can now\n1 - run ./runme.sh to start the program.\n2 - Goto http://127.0.0.1:7860/ in your favorite browser \n3 - And CTR-C to exit."
+    log "Installation complete."
+    log "You can now"
+    log "1) - run ./runme.sh to start the program."
+    log "2) - Goto http://127.0.0.1:7860/ in your favorite browser"
+    log "3) - And CTR-C to exit."
+    log " "
     trap - EXIT  # Remove the trap if installation is successful
 }
 
