@@ -22,25 +22,85 @@ https://docs.codacy.com/getting-started/codacy-quickstart/#signing-up
 
 # Marketing
 
-[  ] PM directly people on reddit, work discord, instagram? for alpha testers, see positive responses to oobabooga post.
+[X] PM directly people on reddit, 
+[] work discord, 
+[] instagram? for alpha testers, see positive responses to oobabooga post.
 
-[  ] Post to sub reddits when polished and ready for beta:
+[X] Post to sub reddits when -polished and ready for alpha-:
 
-https://www.reddit.com/r/MachineLearning/
+[X] https://www.reddit.com/r/MachineLearning/
 
-https://www.reddit.com/r/artificial/
+[X] https://www.reddit.com/r/artificial/
 
-https://www.reddit.com/r/Oobabooga/ ?
+[X] https://www.reddit.com/r/Oobabooga/ ?
 
-https://www.reddit.com/r/MediaSynthesis/
+[X] https://www.reddit.com/r/MediaSynthesis/
 
-https://www.reddit.com/r/ArtificialInteligence/
+[X] https://www.reddit.com/r/ArtificialInteligence/
 
-https://www.reddit.com/r/LocalLLaMA/
+[X] https://www.reddit.com/r/LocalLLaMA/
 
-https://www.reddit.com/r/ollama/
+[X] https://www.reddit.com/r/ollama/
 
-https://www.reddit.com/r/LocalLLaMA/
+
+And Facebook: 
+
+https://www.facebook.com/groups/opensourcellms
+
+And 2 Discords... Whatever they are? 
+
+Twitter: 
+
+
+1. **General AI and LLM Hashtags**:
+   - #AI
+   - #MachineLearning
+   - #ArtificialIntelligence
+   - #LLM (Large Language Model)
+   - #DeepLearning
+   - #NLP (Natural Language Processing)
+
+2. **Open Source Software Hashtags**:
+   - #OpenSource
+   - #OSS (Open Source Software)
+   - #FOSS (Free and Open Source Software)
+   - #CodeForGood
+
+3. **Community and Collaboration Hashtags**:
+   - #DevCommunity
+   - #OpenSourceCommunity
+   - #AICommunity
+   - #CollaborativeCoding
+
+4. **Software Development Hashtags**:
+   - #SoftwareDevelopment
+   - #Coding
+   - #Programming
+   - #DevOps
+
+5. **Fun and Engaging Hashtags**:
+   - #TechForGood
+   - #CodeMonkey (playful reference to coding)
+   - #AIRevolution
+   - #FutureOfAI
+
+6. **Specific to Your Project**:
+   - #CueSubPlot
+   - #Chatbots
+   - #LLMApplications
+   - #AIChat
+
+
+Citations:
+[1] https://eugeneyan.com/writing/llm-bio/
+[2] https://www.reddit.com/r/MachineLearning/comments/1afdxxd/p_ai_filter_local_llms_for_social_media_curation/
+[3] https://aiascendant.substack.com/p/oss-vs-openai
+[4] https://www.guardrailsai.com/blog/from-traditional-machine-learning-governance-to-llm-centric-ai-governance
+[5] https://deepgram.com/ai-apps/twitter-bio-generator
+[6] https://www.encora.com/insights/proprietary-vs-open-source-llms
+[7] https://hdsr.mitpress.mit.edu/pub/aelql9qy/release/2
+[8] https://srinstitute.utoronto.ca/news/gen-ai-llms-explainer
+
 
 [] Email your project heroes (living)
 
@@ -113,3 +173,52 @@ ffmpeg -i video.mkv -i palette4.png -filter_complex "fps=4,paletteuse" -y output
 4) optimize with gifsicle
 
 gifsicle -O3 output_video.gif -o output_video_1.gif
+
+
+# Initial Alpha user email: 
+
+thegreatpotatogod
+Cool-Hornet4434
+Flying_Madlad
+cmdywrtr27
+
+
+
+Thanks for your friendly feedback over at /r/Oobabooga! (about a month ago)
+
+I'm launching the alpha version of my software 'cuesubplot' this week and thought you might be interested in joining. It simplifies expanding on list creation from prompts without the copy-pasting hassle. Kind of like a limited Automatic1111 for text. And yes, it's totally compatible with Oobabooga's API :)
+
+The alpha will run for about a week before the survey comes out. Any feedback will be appreciated.
+
+You can find the repository over at https://github.com/kleer001/cuesubplot
+
+Please let me know if you're interested and would like to help out!
+
+Best,
+kleer001
+
+typeform survey: 
+https://zhjj6b3nj66.typeform.com/to/zAnky1FB
+
+youtube video: 
+https://youtu.be/nygwTchbaDs
+
+title: Prototype procedural chat interface (works with 6+ LLM chat APIs). 
+
+
+
+ I'm bubbling with excitement to present ***cuesubplot***. 
+
+* It saves copy pasting when you want to create lists based off a prompt and then apply the same prompt to the items in that list. 
+
+* I got tired of opening another document to save the list then copy paste each time I wanted to explore the prompts. 
+
+* It will be leaving alpha by in a week or so. I would love feedback. **However, I understand everyone's got their own busy life.** 
+
+* The only perk of use would be trying something new and helping out an fellow ambitious LLM user, and helping potentially more LLM users that want to explore procedural text generation. 
+
+Check it out please over at: https://github.com/kleer001/cuesubplot
+
+---
+
+*If you do try it out please PM me so I can bother you with a* ***very short*** *survey once you've kicked the tires a little. It'd be a great help!*
