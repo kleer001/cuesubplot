@@ -28,19 +28,19 @@ https://docs.codacy.com/getting-started/codacy-quickstart/#signing-up
 
 [X] Post to sub reddits when -polished and ready for alpha-:
 
-[X] https://www.reddit.com/r/MachineLearning/
+[] https://www.reddit.com/r/MistralAI/ (get .cfg working first)
+[] https://www.reddit.com/r/OpenAI/ (get .cfg working first)
+[] https://www.reddit.com/r/SideProject/
+[] 
+[]
 
-[X] https://www.reddit.com/r/artificial/
-
-[X] https://www.reddit.com/r/Oobabooga/ ?
-
-[X] https://www.reddit.com/r/MediaSynthesis/
-
-[X] https://www.reddit.com/r/ArtificialInteligence/
-
-[X] https://www.reddit.com/r/LocalLLaMA/
-
-[X] https://www.reddit.com/r/ollama/
+[X] https://www.reddit.com/r/MachineLearning/  
+[X] https://www.reddit.com/r/artificial/  
+[X] https://www.reddit.com/r/Oobabooga/ ?  
+[X] https://www.reddit.com/r/MediaSynthesis/  
+[X] https://www.reddit.com/r/ArtificialInteligence/  
+[X] https://www.reddit.com/r/LocalLLaMA/  
+[X] https://www.reddit.com/r/ollama/  
 
 
 And Facebook: 
