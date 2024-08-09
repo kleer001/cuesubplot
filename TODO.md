@@ -5,11 +5,10 @@
 [] Get codacity badge (login, upload, etc)  
 https://docs.codacy.com/getting-started/codacy-quickstart/#signing-up
 
-# Code1
+# Code
 
-[] Create and test setup script
-
-[] finish Readme.md for release
+[] Put switch in for searching for local llm to not bother with non localhost locations
+[] Integrate choice for config in gui or on command line? 
 
 # Wishlist (next version)
 
@@ -122,6 +121,10 @@ aparrish@nyu.edu
 [] Spit and polish for general consumption
 
 ### Completed
+
+[X] Create and test setup script
+
+[X] finish Readme.md for release
 
 
 [X] Setup workflow with pycharm and github
