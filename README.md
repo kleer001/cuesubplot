@@ -16,6 +16,7 @@
 ## :speech_balloon: What? 
 Cuesubplot is a browser based, hard-coded (not generalized __yet__ :sweat_smile:) network for creating lists and building on them in a way that is stable and  **reliable**. All from the comfort of your favorite local LLM API.
 
+https://youtu.be/nygwTchbaDs
 
 # :bulb: Why?
 

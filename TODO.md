@@ -22,6 +22,7 @@ https://docs.codacy.com/getting-started/codacy-quickstart/#signing-up
 
 # Marketing
 
+
 [X] PM directly people on reddit, 
 [] work discord, 
 [] instagram? for alpha testers, see positive responses to oobabooga post.
