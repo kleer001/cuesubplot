@@ -2,9 +2,8 @@ import configparser
 
 import requests
 
-from findLLM import find_local_LLM
 from text_utils import parse_list
-
+from findLLM import get_active_llm_from_config
 
 def load_config(file_path='settings.cfg'):
     config = configparser.ConfigParser()
@@ -109,7 +108,7 @@ def get_response(response, active_llm, config=None):
 
 def get_llm_response(prompt):
     config = load_config()
-    active_llm = find_local_LLM()
+    active_llm = get_active_llm_from_config()
 
     if active_llm:
         response = query_llm(prompt, active_llm, config)
@@ -122,7 +121,7 @@ def get_llm_response(prompt):
 
 def get_clean_llm_response(prompt):
     config = load_config()
-    active_llm = find_local_LLM()
+    active_llm = get_active_llm_from_config()
 
     if active_llm:
         response = query_llm(prompt, active_llm, config)
